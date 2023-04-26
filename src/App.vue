@@ -1,6 +1,7 @@
 <script setup>
 import {onMounted, onUnmounted, ref ,computed} from 'vue';
-import { RouterLink, RouterView } from 'vue-router'
+// import { RouterLink, RouterView } from 'vue-router'
+import ChatView from '@/components/ChatView.vue';
 // import {socket, state} from "@/socket.js";
 // import ConnectionState from '@/components/ConnectionState.vue';
 
@@ -23,13 +24,7 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <header>
-    <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/auth">About</RouterLink>
-      </nav>
-  </header>
-  <RouterView/>
+  <ChatView/>
 </template>
 
 <style scoped>
