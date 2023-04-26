@@ -1,50 +1,41 @@
 <script setup>
-import {onMounted, onUnmounted, computed} from 'vue';
+import {onMounted, onUnmounted, ref ,computed} from 'vue';
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from '@/components/HelloWorld.vue'
-import SelectUsername from '@/components/SelectUsername.vue';
-import {socket, state} from "@/socket.js";
-import ConnectionState from '@/components/ConnectionState.vue';
+// import {socket, state} from "@/socket.js";
+// import ConnectionState from '@/components/ConnectionState.vue';
 
 
-let usernameAlreadySelected = false;
+// let usernameAlreadySelected = ref(false);
 
-const onUsernameSelection = (username) => {
-    usernameAlreadySelected = true;
-    socket.auth = { username };
-    socket.connect();
-  };
+
+  // socket.on("connect_error", (err) => {
+  //     if (err.message === "invalid username") {
+  //       usernameAlreadySelected == false;
+  //     }
+  //   });
+
   onMounted(() => {
-    socket.on("connect_error", (err) => {
-      if (err.message === "invalid username") {
-        usernameAlreadySelected = false;
-      }
-    });
   });
 
   onUnmounted(() => {
-    socket.off("connect_error");
   });
 
 </script>
 
 <template>
-  <header v-if="usernameAlreadySelected">
+  <header>
     <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/auth">About</RouterLink>
       </nav>
   </header>
-  <SelectUsername v-if="!usernameAlreadySelected" @input="onUsernameSelection" />
-  <RouterView v-else/>
-
-  <ConnectionState/>
+  <RouterView/>
 </template>
 
 <style scoped>
 header {
   line-height: 1.5;
-  max-height: 100vh;
+  /* max-height: 100vh; */
 }
 
 .logo {

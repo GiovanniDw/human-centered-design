@@ -1,10 +1,12 @@
-const express = require('express');
-const ViteExpress = require('vite-express');
-const cors = require('cors');
-const http = require("http");
+// const express = require('express');
+import express from 'express';
+import ViteExpress from 'vite-express';
+import cors from 'cors';
+import http from "http";
+import { Server } from 'socket.io';
 const app = express();
 
-ViteExpress.config({mode: "development", "printViteDevServerHost": true});
+// ViteExpress.config({mode: "development", "printViteDevServerHost": true});
 
 const CorsOptions = {
   origin: "http://localhost:5173",
@@ -17,10 +19,11 @@ const CorsOptions = {
 app.use(cors(CorsOptions));
 
 
+
+
 app.options("*", cors(CorsOptions));
 
 const PORT = process.env.PORT || 3000;
-const socket = require('socket.io');
 
 // const socket = require("socket.io")(server, {
 //   rejectUnauthorized: false // WARN: please do not do this in production
@@ -31,11 +34,11 @@ const server = http.createServer(app).listen(PORT, () => {
 });
 
 
-
-const io = socket(server, {
+const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173"
-  }
+    origin: 'http://localhost:5173',
+    methods: ['GET', 'POST'],
+  },
 });
 
 // const io = require("socket.io")(httpServer, {
@@ -59,17 +62,36 @@ io.use((socket, next) => {
   next();
 });
 
+
 io.on("connection", (socket) => {
+  console.log(socket.rooms);
+
+  socket.on("set username", (username) => {
+    socket.username = username;
+
+
+    socket.emit('username', socket.username)
+  });
+  
+  
   // fetch existing users
-  console.log("socket connection")
-  // const users = [];
-  // for (let [id, socket] of io.of("/").sockets) {
-  //   users.push({
-  //     userID: id,
-  //     username: socket.username,
-  //   });
-  // }
-  // socket.emit("users", users);
+  console.log("socket connection");
+  const users = [];
+  for (let [id, socket] of io.of("/").sockets) {
+    users.push({
+      userID: id,
+      username: socket.username,
+    });
+  }
+  socket.emit("users", users);
+
+
+  socket.on("message", (msg) => {
+    console.log(msg);
+        socket.emit('message', msg)
+      })
+
+  
 
   // // notify existing users
   // socket.broadcast.emit("user connected", {
@@ -94,10 +116,12 @@ io.on("connection", (socket) => {
 
 
 
-
 // httpServer.listen(PORT, () =>
 //   console.log(`server listening at http://localhost:${PORT}`)
 // );
 
 
 ViteExpress.bind(app, io);
+
+
+// https://github.com/troygoode/node-cors-server/blob/master/server.js
