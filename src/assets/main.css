@@ -1,7 +1,7 @@
 @import './base.css';
 
 html, body, #app {
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 #app {

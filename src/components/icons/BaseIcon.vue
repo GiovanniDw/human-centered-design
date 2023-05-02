@@ -22,7 +22,7 @@ defineProps({
 
 <style lang="scss" scoped>
 span.icon:hover {
-  transform: scale(2);
+  // transform: scale(2);
 }
 .material-symbols-rounded {
   font-variation-settings:
