@@ -55,9 +55,13 @@ The current conventions are designed by, and thus for, designers. Not all of the
 4. [Add nonsense](https://exclusive-design.vasilis.nl/principles/add-nonsense/)  
    Designing for people with disabilities is in large part uncharted territory. Nonsense can be a useful tool to investigate the unkown. And it’s fun.
 
-> **Dont listen to customers**
 
-\-   Jacob nielson
+
+> **Dont listen to customers**  
+
+-> Jacob nielson
+
+
 
 # Prototypen en testen
 

@@ -19,14 +19,13 @@ export default defineConfig({
   },
   server: {
     port: 3000,
-    hmr: true,
+    hmr: true
   },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
-  },
-  
+  }
 })
 
 // export default defineConfig({
@@ -48,5 +47,5 @@ export default defineConfig({
 //       '@': fileURLToPath(new URL('./src', import.meta.url))
 //     }
 //   },
-  
+
 // })
