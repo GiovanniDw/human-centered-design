@@ -2,7 +2,7 @@
 
 # Course Info
 
-[GitHub - cmda-minor-web/human-centered-design-2223: The course Human Centered Design is about learning to design and build websites for real humans, using user testing and iterative design proces. Human Centered Design is part of the half year minor programme about Web Design and Development in Amsterdam. Bachelor Communication and Multimedia Design, Amsterdam University of Applied Science.](https://github.com/cmda-minor-web/human-centered-design-2223)
+[GitHub - cmda-minor-web/human-centered-design-2223](https://github.com/cmda-minor-web/human-centered-design-2223)
 
 ## Assignment
 
@@ -46,17 +46,13 @@ Eric is een ontwerper. Hij organiseert regelmatig design-avonden waar hij probee
 
 During my research at the Master Design I have worked with four exclusive design principles. With some good will we can organise all chapters in this thesis into these four principles.
 
-1. [Study situation](https://exclusive-design.vasilis.nl/principles/study-situation/)
-
-   In order to become specialist designers for all kinds of people with all kinds of disabilities we have to study different, individual situations.
-
-2. [Ignore conventions](https://exclusive-design.vasilis.nl/principles/ignore-conventions/) The current conventions are designed by, and thus for, designers. Not all of these conventions work for non-designers. If we want to include non-designers, and especially people with disabilities, we should reconsider these conventions, after we studied their situations.
-3. [Prioritise identity](https://exclusive-design.vasilis.nl/principles/prioritise-identity/)
-
-   Including excluded people into our design process, by seeing them as co-designers rather than study objects, can help in coming up with new, and relevant, conventions.
-
-4. [Add nonsense](https://exclusive-design.vasilis.nl/principles/add-nonsense/)
-
+1. [Study situation](https://exclusive-design.vasilis.nl/principles/study-situation/)  
+   In order to become specialist designers for all kinds of people with all kinds of disabilities we have to study different, individual situations.  
+2. [Ignore conventions](https://exclusive-design.vasilis.nl/principles/ignore-conventions/)  
+The current conventions are designed by, and thus for, designers. Not all of these conventions work for non-designers. If we want to include non-designers, and especially people with disabilities, we should reconsider these conventions, after we studied their situations.
+3. [Prioritise identity](https://exclusive-design.vasilis.nl/principles/prioritise-identity/)  
+   Including excluded people into our design process, by seeing them as co-designers rather than study objects, can help in coming up with new, and relevant, conventions.  
+4. [Add nonsense](https://exclusive-design.vasilis.nl/principles/add-nonsense/)  
    Designing for people with disabilities is in large part uncharted territory. Nonsense can be a useful tool to investigate the unkown. And it’s fun.
 
 > **Dont listen to customers**
@@ -65,9 +61,8 @@ During my research at the Master Design I have worked with four exclusive design
 
 # Prototypen en testen
 
-[10 Usability Lessons from Steve Krug’s Don't Make Me Think | UX Booth](https://www.uxbooth.com/articles/10-usability-lessons-from-steve-krugs-dont-make-me-think/)
-
-[Design for Both Needs and Wants: Applying Anderson's User Experience Hierarchy of Needs](https://thevisualcommunicationguy.com/2018/11/08/design-for-both-needs-and-wants-applying-andersons-user-experience-hierarchy-of-needs/)
+- [10 Usability Lessons from Steve Krug’s Don't Make Me Think | UX Booth](https://www.uxbooth.com/articles/10-usability-lessons-from-steve-krugs-dont-make-me-think/)
+- [Design for Both Needs and Wants: Applying Anderson's User Experience Hierarchy of Needs](https://thevisualcommunicationguy.com/2018/11/08/design-for-both-needs-and-wants-applying-andersons-user-experience-hierarchy-of-needs/)
 
 ## Testen
 
