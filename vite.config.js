@@ -13,7 +13,8 @@ export default defineConfig({
     manifest: true,
     rollupOptions: {
       input: 'index.html'
-    }
+    },
+    outDir: 'docs/'
   },
   server: {
     port: 3000,
@@ -26,7 +27,6 @@ export default defineConfig({
   },
   
 })
-
 
 // export default defineConfig({
 //   plugins: [vue()],
