@@ -7,8 +7,8 @@ import {
   useScroll,
   useToggle,
   useElementSize,
-useElementBounding,
-objectEntries
+  useElementBounding,
+  objectEntries
 } from '@vueuse/core'
 import BaseIcon from '@/components/icons/BaseIcon.vue'
 import ImgIcon from '@/components/icons/ImgIcon.vue';
@@ -56,7 +56,7 @@ const chatImgEmoteList = ref([
 const chatEmotesOpen = ref(false)
 const toggleChatEmotesOpen = useToggle(chatEmotesOpen)
 
-// chatEmote.value ? (chatEmotesOpen.value = false) : ''
+chatEmote.value ? (chatEmotesOpen.value = false) : ''
 
 const date = new Date()
 const timeAgo = useTimeAgo(date)
@@ -94,10 +94,11 @@ const onSubmit = () => {
     time: timeAgo
   })
   messages.value.push(newMessage)
+  chatEmotesOpen.value = false
   chatImgEmote.value = ''
   chatEmote.value = ''
   message.value = '';
-  toggleChatEmotesOpen()
+  
 }
 
 const onMessage = (el, done) => {
@@ -118,52 +119,40 @@ const footerHeight = computed(() => {
 </script>
 
 <template>
-  <main>
-    <div id="chat-messages" ref="chatContainer">
-      <TransitionGroup name="list" @enter="onMessage">
-        <template v-for="(item, index) in messages" :key="index">
-          <ChatMessage :msg="item.msg" :icon="item.icon" :src="item.src" :me="item.me" :time="item.time" />
-        </template>
-      </TransitionGroup>
-    </div>
-  </main>
+<main>
+  <div id="chat-messages" ref="chatContainer">
+    <TransitionGroup name="list" @enter="onMessage">
+      <template v-for="(item, index) in messages" :key="index">
+        <ChatMessage :msg="item.msg" :icon="item.icon" :src="item.src" :me="item.me"
+                     :time="item.time" />
+      </template>
+    </TransitionGroup>
+  </div>
+</main>
 
-  <footer ref="footerRef" class="chat-input">
-    <form class="chat-form" @submit.prevent="onSubmit">
-      <input
-        class="message-input"
-        type="textarea"
-        v-model="message"
-        required
-        placeholder="your message"
-      />
-      <div class="icon-input-group">
+<footer ref="footerRef" class="chat-input">
+  <form class="chat-form" @submit.prevent="">
+    <fieldset class="icon-input-group">
         <button class="icon-btn icon-select-button" @click="toggleChatEmotesOpen()">
           <ImgIcon v-if="chatImgEmote" :src="chatImgEmote" />
           <BaseIcon v-else name="add_reaction" />
         </button>
         <div class="icon-select-group" :class="{ open: chatEmotesOpen }">
-          <label
-            class="icon-select"
-            v-for="(item, index) in chatImgEmoteList"
-            :key="index"
-            :for="index"
-          >
-            <input
-              type="radio"
-              :id="index"
-              :value="item.src"
-              v-model="chatImgEmote"
-            />
-            <ImgIcon  :name="item.name" :src="item.src" />
+          <label class="icon-select" v-for="(item, index) in chatImgEmoteList" :key="index"
+                 :for="index">
+            <input type="radio" :id="index" :value="item.src" v-model="chatImgEmote" />
+            <ImgIcon :name="item.name" :src="item.src" />
           </label>
         </div>
-      </div>
-      <button class="icon-btn send-button">
-        <BaseIcon name="send" />
-      </button>
-    </form>
-  </footer>
+      </fieldset>
+    <input class="message-input" type="textarea" v-model="message" required
+           placeholder="your message" />
+      
+    <button class="icon-btn send-button" type="submit" @keyup.enter.left="onSubmit" @submit="onSubmit" @click="onSubmit">
+      <BaseIcon name="send" />
+    </button>
+  </form>
+</footer>
 </template>
 
 <style scoped lang="scss">
@@ -178,6 +167,13 @@ const footerHeight = computed(() => {
   transform: translateY(30px);
 }
 
+fieldset {
+  padding: 0;
+  margin: 0;
+}
+button {
+  cursor: pointer;
+}
 .icon-input-group {
   // font-size: var(--icon-size);
   // padding: .5em;
@@ -206,7 +202,7 @@ const footerHeight = computed(() => {
 
 .icon-btn {
   border-radius: 100%;
-  
+
   margin: 0;
   border: 0;
 
@@ -224,15 +220,16 @@ const footerHeight = computed(() => {
   // width: 1.5em;
 
 
- > span {
-  
-  position: absolute;
+  > span {
+
+    position: absolute;
     // width: 1em;
     // height: 1em;
-text-align: center;
-  
+    text-align: center;
+
   }
 }
+
 .send-button {
   appearance: none;
 
@@ -267,9 +264,13 @@ text-align: center;
   }
 
   &.open {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
     opacity: 1;
     bottom: v-bind(footerHeight);
     position: absolute;
+    left: 0;
     gap: 1em;
     z-index: 100;
 
