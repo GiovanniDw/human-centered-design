@@ -59,7 +59,7 @@ The current conventions are designed by, and thus for, designers. Not all of the
 
 > **Dont listen to customers**  
 
--> Jacob nielson
+→ Jacob nielson
 
 
 
