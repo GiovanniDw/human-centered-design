@@ -70,17 +70,17 @@ const onMessage = (el, done) => {
 
 <footer class="chat-input">
   <form class="chat-form" @submit.prevent="onSubmit">
+  <div>
     <button class="icon icon-select-button">
       <BaseIcon name="add_reaction" @click="toggleChatEmotesOpen()" />
-      <div class="icon-select-group" :class="{ open: chatEmotesOpen }">
-        <div class="icon-select"   v-for="(item, index) in chatEmoteList" :key="index">
-          <input type="radio" :id="index" :value="item.name" v-model="chatEmote" />
-          <label :for="index">
+    </button>
+    <div class="icon-select-group" :class="{ open: chatEmotesOpen }">
+          <label class="icon-select"   v-for="(item, index) in chatEmoteList" :key="index" :for="index">
+            <input type="radio" :id="index" :value="item.name" v-model="chatEmote" />
             <BaseIcon :name="item.name" />
           </label>
-        </div>
       </div>
-    </button>
+  </div>
     <input class="message-input" type="textarea" v-model="message" required placeholder="your message" />
     <button class="icon">
       <BaseIcon name="send" />
@@ -103,6 +103,7 @@ const onMessage = (el, done) => {
 
 
 button.icon-select-button {
+  padding: .25em;
   & > span {
     z-index: 3;
     background: #000;
@@ -110,21 +111,31 @@ button.icon-select-button {
 }
 
 .icon-select-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0em;
   font-size: 1.4em;
   position: absolute;
   bottom: 0em;
   transition: all 300ms;
-  
+  opacity: 0;
 
+  .icon-select {
+    position: absolute;
+    bottom: 0;
+  }
 
   &.open {
+    opacity: 1;
     bottom: 2em;
     position: absolute;
     gap: 1em;
     z-index: 100;
 
     .icon-select{
-      margin-bottom: 1em;
+      position: relative;
+      bottom: 0;
+      // margin-bottom: 1em;
     }
     
   }
@@ -134,25 +145,33 @@ button.icon-select-button {
 
 
 .icon-select {
-  background: red;
+  // background: red;
+  color: var(--color-divider-dark-1);
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
   z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: .25em;
+  
   border-radius: 100%;
   width: 1.5em;
   height: 1.5em;
   
 
   label {
-    // display: flex;
-    display: inline-block;
-    position: relative;
-    width: 1.5em;
-    height: 1.5em;
-    margin: auto;
+    // padding: .25em;
+    // // display: flex;
+    // display: inline-block;
+    // position: absolute;
+    // width: 1.5em;
+    // height: 1.5em;
+    // margin: auto;
   }
+  &:has(:checked) {
+
+    color: var(--color-divider-dark-2);
+}
 
   input[type=radio] {
     width: 1.5em;
@@ -161,10 +180,6 @@ button.icon-select-button {
     position: absolute;
     z-index: 3;
     appearance: none;
-    
-    &:checked {
-      height: 5em;
-    }
   }
 }
 

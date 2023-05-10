@@ -33,7 +33,7 @@ const props = defineProps({
   padding: .7em;
   min-width: 3em;
   border: 1px solid gray;
-background: var(--color-background-soft);
+  background: var(--color-background-soft);
 
 
   &:after{
