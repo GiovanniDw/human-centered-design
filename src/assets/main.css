@@ -34,15 +34,20 @@ body,
 a,
 .green {
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
+  color: var(--color-blue);
   transition: 0.4s;
 }
 
 @media (hover: hover) {
   a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+    color: var(--color-blue-hover);
   }
 }
+.router-link-active {
+  color: var(--color-blue-active);
+}
+
+
 
 @media (min-width: 1024px) {
   body {

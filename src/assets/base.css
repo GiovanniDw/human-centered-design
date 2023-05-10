@@ -9,6 +9,9 @@
   --color-black-mute: #282828;
 
   --color-indigo: #2c3e50;
+  --color-blue: rgb(0, 174, 255);
+  --color-blue-active: rgb(59, 137, 255);
+  --color-blue-hover: rgb(0, 120, 205);
   --color-green: hsla(160, 100%, 37%, 1);
   --color-green-op: hsla(160, 100%, 37%, 0.2);
   --color-orange: hsla(34, 100%, 54%, 1);

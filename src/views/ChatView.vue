@@ -7,15 +7,18 @@ import {
   useScroll,
   useToggle,
   useElementSize,
-useElementBounding
+useElementBounding,
+objectEntries
 } from '@vueuse/core'
 import BaseIcon from '@/components/icons/BaseIcon.vue'
+import ImgIcon from '@/components/icons/ImgIcon.vue';
 import ChatMessage from '@/components/ChatMessage.vue'
 
 const messages = ref([])
 const message = ref('')
 const chatContainer = ref(null)
 const chatEmote = ref('')
+const chatImgEmote = ref('')
 const footerRef = ref(null);
 // const footerHeight = ref(0)
 const chatEmoteList = ref([
@@ -23,10 +26,37 @@ const chatEmoteList = ref([
   { name: 'mood_bad', color: 'var(--color-error)' }
 ])
 
+import facepalm from '@/assets/icons/facepalm.png';
+import groupTask from '@/assets/icons/group-task.png';
+import ignore from '@/assets/icons/ignore.png';
+import learning from '@/assets/icons/learning.png';
+import mad from '@/assets/icons/mad.png';
+import silence from '@/assets/icons/silence.png';
+import strike from '@/assets/icons/strike.png';
+import suppression from '@/assets/icons/suppression.png';
+import tiedHands from '@/assets/icons/tied-hands.png';
+import yesOrNo from '@/assets/icons/yes-or-no.png';
+
+
+const chatImgEmoteList = ref([
+  { name: 'facepalm', src: facepalm },
+  { name: 'group task', src: groupTask },
+  { name: 'ignore', src: ignore },
+  { name: 'learning', src: learning },
+  { name: 'mad', src: mad },
+  { name: 'silence', src: silence },
+  { name: 'strike', src: strike },
+  { name: 'suppression', src: suppression },
+  { name: 'tiedHands', src: tiedHands },
+  { name: 'yesOrNo', src: yesOrNo },
+])
+
+
+
 const chatEmotesOpen = ref(false)
 const toggleChatEmotesOpen = useToggle(chatEmotesOpen)
 
-chatEmote.value ? (chatEmotesOpen.value = false) : ''
+// chatEmote.value ? (chatEmotesOpen.value = false) : ''
 
 const date = new Date()
 const timeAgo = useTimeAgo(date)
@@ -50,7 +80,7 @@ const setFooterHeight = reactive({
   height: getFooterHeight.value
 })
 
-console.log(getFooterHeight.height)
+// console.log(getFooterHeight.height)
 
 const onSubmit = () => {
   const { x, y } = useScroll(chatContainer)
@@ -58,13 +88,16 @@ const onSubmit = () => {
   const formatted = useDateFormat(date, 'YYYY-MM-DD HH:mm:ss')
   const newMessage = new Object({
     msg: message.value,
-    icon: chatEmote.value,
+    icon: chatImgEmote.value,
+    src: chatImgEmote.value,
     me: true,
     time: timeAgo
   })
   messages.value.push(newMessage)
+  chatImgEmote.value = ''
   chatEmote.value = ''
-  message.value = ''
+  message.value = '';
+  toggleChatEmotesOpen()
 }
 
 const onMessage = (el, done) => {
@@ -89,7 +122,7 @@ const footerHeight = computed(() => {
     <div id="chat-messages" ref="chatContainer">
       <TransitionGroup name="list" @enter="onMessage">
         <template v-for="(item, index) in messages" :key="index">
-          <ChatMessage :msg="item.msg" :icon="item.icon" :me="item.me" :time="item.time" />
+          <ChatMessage :msg="item.msg" :icon="item.icon" :src="item.src" :me="item.me" :time="item.time" />
         </template>
       </TransitionGroup>
     </div>
@@ -106,28 +139,27 @@ const footerHeight = computed(() => {
       />
       <div class="icon-input-group">
         <button class="icon-btn icon-select-button" @click="toggleChatEmotesOpen()">
-          <BaseIcon v-if="chatEmote" :name="chatEmote" />
+          <ImgIcon v-if="chatImgEmote" :src="chatImgEmote" />
           <BaseIcon v-else name="add_reaction" />
         </button>
         <div class="icon-select-group" :class="{ open: chatEmotesOpen }">
           <label
             class="icon-select"
-            v-for="(item, index) in chatEmoteList"
+            v-for="(item, index) in chatImgEmoteList"
             :key="index"
             :for="index"
           >
             <input
               type="radio"
               :id="index"
-              :value="item.name"
-              v-model="chatEmote"
-              @click="toggleChatEmotesOpen()"
+              :value="item.src"
+              v-model="chatImgEmote"
             />
-            <BaseIcon :name="item.name" :style="{ color: item.color }" />
+            <ImgIcon  :name="item.name" :src="item.src" />
           </label>
         </div>
       </div>
-      <button class="icon-btn send-button" type="submit">
+      <button class="icon-btn send-button">
         <BaseIcon name="send" />
       </button>
     </form>
@@ -174,10 +206,11 @@ const footerHeight = computed(() => {
 
 .icon-btn {
   border-radius: 100%;
-  padding: 0.5em;
+  
   margin: 0;
   border: 0;
-  padding: 0.5em;
+
+  padding: 1em;
   // padding: .25em;
   // font-size: var(--icon-size);
   // font-size:var(--icon-size);
@@ -185,8 +218,20 @@ const footerHeight = computed(() => {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  z-index: 4;
   // height: 1.5em;
   // width: 1.5em;
+
+
+ > span {
+  
+  position: absolute;
+    // width: 1em;
+    // height: 1em;
+text-align: center;
+  
+  }
 }
 .send-button {
   appearance: none;
@@ -232,6 +277,7 @@ const footerHeight = computed(() => {
       position: relative;
       bottom: 0;
       padding: 1em;
+      z-index: 2;
     }
   }
 }
@@ -241,7 +287,7 @@ const footerHeight = computed(() => {
   color: var(--color-divider-dark-1);
   background-color: var(--color-background);
   border: 1px solid var(--color-border);
-  z-index: 2;
+  z-index: 0;
   display: flex;
   align-items: center;
   justify-content: center;

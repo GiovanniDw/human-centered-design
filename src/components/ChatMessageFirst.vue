@@ -1,14 +1,13 @@
 <script setup>
 import { ref } from 'vue'
-import ImgIcon from '@/components/icons/ImgIcon.vue';
+import BaseIcon from './icons/BaseIcon.vue'
 const isMyMessage = ref(false)
 const props = defineProps({
   name: String,
   msg: String,
   icon: String,
   me: Boolean,
-  time: String,
-  src: String
+  time: String
 })
 
 // props.me ? isMyMessage.value = false : true
@@ -18,8 +17,8 @@ const props = defineProps({
   <div class="message" :class="{ 'my-message': props.me }">
     <p>{{ msg }}</p>
     <span class="time">{{ time }}</span>
-    <div class="icon-wrapper" v-if="src">
-      <ImgIcon :src="src" />
+    <div class="icon-wrapper" v-if="icon">
+      <BaseIcon :name="icon" />
     </div>
   </div>
 </template>
