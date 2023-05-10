@@ -1,23 +1,35 @@
-
 <script setup>
-import { ref } from 'vue';
-import { useNow, useDateFormat, useTimeAgo, useScroll, useToggle } from '@vueuse/core';
-import BaseIcon from '@/components/icons/BaseIcon.vue';
-import ChatMessage from '@/components/ChatMessage.vue';
+import { reactive, ref, onMounted, computed } from 'vue'
+import {
+  useNow,
+  useDateFormat,
+  useTimeAgo,
+  useScroll,
+  useToggle,
+  useElementSize,
+useElementBounding
+} from '@vueuse/core'
+import BaseIcon from '@/components/icons/BaseIcon.vue'
+import ChatMessage from '@/components/ChatMessage.vue'
 
-const messages = ref([]);
-const message = ref('');
-const chatContainer = ref(null);
-const chatEmote = ref('');
+const messages = ref([])
+const message = ref('')
+const chatContainer = ref(null)
+const chatEmote = ref('')
+const footerRef = ref(null);
+// const footerHeight = ref(0)
+const chatEmoteList = ref([
+  { name: 'sentiment_satisfied', color: 'var(--color-succes)' },
+  { name: 'mood_bad', color: 'var(--color-error)' }
+])
 
-const chatEmoteList = ref([{ name: 'sentiment_satisfied', color: '' }, { name: 'mood_bad', color: '' }])
-
-const chatEmotesOpen = ref(false);
+const chatEmotesOpen = ref(false)
 const toggleChatEmotesOpen = useToggle(chatEmotesOpen)
 
-const date = new Date();
-const timeAgo = useTimeAgo(date);
+chatEmote.value ? (chatEmotesOpen.value = false) : ''
 
+const date = new Date()
+const timeAgo = useTimeAgo(date)
 
 const sendBotMessage = () => {
   const botMessage = {
@@ -26,15 +38,22 @@ const sendBotMessage = () => {
     me: false,
     time: timeAgo
   }
-  messages.value.push(botMessage);
+
+  messages.value.push(botMessage)
 }
 
-sendBotMessage();
+sendBotMessage()
 
+const getFooterHeight = useElementSize(footerRef).height
 
+const setFooterHeight = reactive({
+  height: getFooterHeight.value
+})
+
+console.log(getFooterHeight.height)
 
 const onSubmit = () => {
-  const { x, y } = useScroll(chatContainer);
+  const { x, y } = useScroll(chatContainer)
 
   const formatted = useDateFormat(date, 'YYYY-MM-DD HH:mm:ss')
   const newMessage = new Object({
@@ -42,51 +61,77 @@ const onSubmit = () => {
     icon: chatEmote.value,
     me: true,
     time: timeAgo
-  });
-  messages.value.push(newMessage);
-  chatEmote.value = '';
-  message.value = '';
-};
+  })
+  messages.value.push(newMessage)
+  chatEmote.value = ''
+  message.value = ''
+}
 
 const onMessage = (el, done) => {
-  chatContainer.value.scrollTop = chatContainer.value.scrollHeight;
+  chatContainer.value.scrollTop = chatContainer.value.scrollHeight
 }
+
+// onMounted(() => {
+//   footerHeight.value = footerRef.value.offsetHeight + 'px'
+// })
+
+const footerHeight = computed(() => {
+  const { height } = useElementBounding(footerRef);
+  return height.value + 'px'
+})
 
 
 
 </script>
 
 <template>
-<main>
-  <div id='chat-messages' ref="chatContainer">
-    <TransitionGroup name="list" @enter="onMessage">
-      <template v-for="(item, index) in messages" :key="index">
-        <ChatMessage :msg="item.msg" :icon="item.icon" :me="item.me" :time="item.time" />
-      </template>
-    </TransitionGroup>
-  </div>
-</main>
+  <main>
+    <div id="chat-messages" ref="chatContainer">
+      <TransitionGroup name="list" @enter="onMessage">
+        <template v-for="(item, index) in messages" :key="index">
+          <ChatMessage :msg="item.msg" :icon="item.icon" :me="item.me" :time="item.time" />
+        </template>
+      </TransitionGroup>
+    </div>
+  </main>
 
-
-<footer class="chat-input">
-  <form class="chat-form" @submit.prevent="onSubmit">
-  <div>
-    <button class="icon icon-select-button">
-      <BaseIcon name="add_reaction" @click="toggleChatEmotesOpen()" />
-    </button>
-    <div class="icon-select-group" :class="{ open: chatEmotesOpen }">
-          <label class="icon-select"   v-for="(item, index) in chatEmoteList" :key="index" :for="index">
-            <input type="radio" :id="index" :value="item.name" v-model="chatEmote" />
-            <BaseIcon :name="item.name" />
+  <footer ref="footerRef" class="chat-input">
+    <form class="chat-form" @submit.prevent="onSubmit">
+      <input
+        class="message-input"
+        type="textarea"
+        v-model="message"
+        required
+        placeholder="your message"
+      />
+      <div class="icon-input-group">
+        <button class="icon-btn icon-select-button" @click="toggleChatEmotesOpen()">
+          <BaseIcon v-if="chatEmote" :name="chatEmote" />
+          <BaseIcon v-else name="add_reaction" />
+        </button>
+        <div class="icon-select-group" :class="{ open: chatEmotesOpen }">
+          <label
+            class="icon-select"
+            v-for="(item, index) in chatEmoteList"
+            :key="index"
+            :for="index"
+          >
+            <input
+              type="radio"
+              :id="index"
+              :value="item.name"
+              v-model="chatEmote"
+              @click="toggleChatEmotesOpen()"
+            />
+            <BaseIcon :name="item.name" :style="{ color: item.color }" />
           </label>
+        </div>
       </div>
-  </div>
-    <input class="message-input" type="textarea" v-model="message" required placeholder="your message" />
-    <button class="icon">
-      <BaseIcon name="send" />
-    </button>
-  </form>
-</footer>
+      <button class="icon-btn send-button" type="submit">
+        <BaseIcon name="send" />
+      </button>
+    </form>
+  </footer>
 </template>
 
 <style scoped lang="scss">
@@ -101,48 +146,95 @@ const onMessage = (el, done) => {
   transform: translateY(30px);
 }
 
+.icon-input-group {
+  // font-size: var(--icon-size);
+  // padding: .5em;
+  // background: var(--color-error);
+  // border: 1px solid gray;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-alert);
+}
 
-button.icon-select-button {
-  padding: .25em;
-  & > span {
-    z-index: 3;
-    background: #000;
-  }
+// button.icon-select-button {
+//   // padding: .25em;
+//   font-size: var(--icon-size);
+//   color: var(--color-black-mute);
+//   border-radius: 100%;
+//   background: var(--color-white);
+//   & > span {
+//     z-index: 3;
+
+//     // font-size: var(--icon-size);
+
+//   }
+// }
+
+.icon-btn {
+  border-radius: 100%;
+  padding: 0.5em;
+  margin: 0;
+  border: 0;
+  padding: 0.5em;
+  // padding: .25em;
+  // font-size: var(--icon-size);
+  // font-size:var(--icon-size);
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // height: 1.5em;
+  // width: 1.5em;
+}
+.send-button {
+  appearance: none;
+
+  border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  // height: 1.5em;
+  // width: 1.5em;
+  // font-size: var(--icon-size);
 }
 
 .icon-select-group {
+  align-items: center;
+  justify-content: center;
   display: flex;
   flex-direction: column;
-  gap: 0em;
-  font-size: 1.4em;
+  // gap: 1em;
+  font-size: 1.5em;
   position: absolute;
-  bottom: 0em;
+  bottom: 0;
   transition: all 300ms;
   opacity: 0;
+  z-index: 1;
+  // font-size:1.25em;
 
   .icon-select {
     position: absolute;
     bottom: 0;
+    // font-size:1.25em;
   }
 
   &.open {
     opacity: 1;
-    bottom: 2em;
+    bottom: v-bind(footerHeight);
     position: absolute;
     gap: 1em;
     z-index: 100;
 
-    .icon-select{
+    .icon-select {
       position: relative;
       bottom: 0;
-      // margin-bottom: 1em;
+      padding: 1em;
     }
-    
   }
 }
-
-
-
 
 .icon-select {
   // background: red;
@@ -153,11 +245,10 @@ button.icon-select-button {
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
   border-radius: 100%;
   width: 1.5em;
   height: 1.5em;
-  
 
   label {
     // padding: .25em;
@@ -168,24 +259,26 @@ button.icon-select-button {
     // height: 1.5em;
     // margin: auto;
   }
+
   &:has(:checked) {
-
     color: var(--color-divider-dark-2);
-}
+    z-index: 9999999;
+  }
 
-  input[type=radio] {
+  input[type='radio'] {
     width: 1.5em;
     height: 1.5em;
     display: inline-block;
     position: absolute;
     z-index: 3;
     appearance: none;
+    font-size: inherit;
+
+    &:checked {
+      opacity: 0;
+    }
   }
 }
-
-
-
-
 
 main {
   display: flex;
@@ -200,7 +293,6 @@ main {
   max-height: 100cqh;
   overflow-y: scroll;
   /* flex-grow: 1; */
-
 }
 
 /* #app {
@@ -218,7 +310,6 @@ main {
   overflow-y: scroll;
   width: 100%;
   gap: 1em;
-
 }
 
 .chat-form {
@@ -226,6 +317,7 @@ main {
   flex-direction: row;
   justify-items: stretch;
   justify-content: space-between;
+  align-items: center;
 }
 
 footer {
@@ -238,19 +330,21 @@ footer {
   // min-height: 0;
   left: 0;
 
-
   form {
+    // background: #000;
+    // padding: 1em;
     gap: 1em;
+    margin: 1em;
     // border: 1px solid red;
-    padding: .7em;
   }
 
   .message-input {
     width: 100%;
     border: 0;
     padding-left: 1em;
+    // padding: 1em;
     min-height: 2em;
+    // height: auto;
   }
-
 }
 </style>

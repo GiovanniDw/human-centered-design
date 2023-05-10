@@ -1,43 +1,39 @@
 <script setup>
-import {computed, ref, toRef} from 'vue';
-import {socket, state} from '@/socket.js';
+import { computed, ref, toRef } from 'vue'
+import { socket, state } from '@/socket.js'
 
-const { currentUser, usernameAlreadySelected} = state;
-  const username = ref('');
-  
-  const isValid = computed(() => {
-    return username.value.length > 2;
-  });
+const { currentUser, usernameAlreadySelected } = state
+const username = ref('')
 
-  const getInput = computed(() => {
-    return username.value
-  })
+const isValid = computed(() => {
+  return username.value.length > 2
+})
 
-  const onSubmit = () => {
-    socket.connect();
-    socket.emit("set username", username.value);
-    console.log(username.value);
-  
-    state.usernameAlreadySelected = true;
-    // onUsernameSelection(username.value)
+const getInput = computed(() => {
+  return username.value
+})
 
-  };
+const onSubmit = () => {
+  socket.connect()
+  socket.emit('set username', username.value)
+  console.log(username.value)
+
+  state.usernameAlreadySelected = true
+  // onUsernameSelection(username.value)
+}
 
 const onUsernameSelection = (username) => {
-  socket.connect();
-  console.log(username);
+  socket.connect()
+  console.log(username)
   console.log(usernameAlreadySelected)
-    socket.auth = { username };
-    
-  };
+  socket.auth = { username }
+}
 
+// const onUsernameSelection = (username) => {
+// console.log(username.value);
+// console.log(usernameAlreadySelected)
 
-  // const onUsernameSelection = (username) => {
-  // console.log(username.value);
-  // console.log(usernameAlreadySelected)
-    
-  // };
-
+// };
 </script>
 
 <template>
@@ -49,7 +45,6 @@ const onUsernameSelection = (username) => {
     {{ state.usernameAleadySelected }}
   </div>
 </template>
-
 
 <style scoped>
 .select-username {

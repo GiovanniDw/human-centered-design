@@ -1,5 +1,4 @@
 <script setup>
-import {defineProps} from 'vue';
   // defineProps = ({
   //   name: String,
   //   fill: Number,
@@ -9,11 +8,30 @@ import {defineProps} from 'vue';
 
 defineProps({
   name: String,
-})
+  FILL: {
+    type: Number,
+    default: 1
+  },
+  wght: {
+    type: [Number, String],
+    default: 500
+  },
+  GRAD: {
+    type: Number,
+    default: 0
+  },
+  opsz: {
+    type: Number,
+    default: 24
+  },
+});
+
+
+
 </script>
 
 <template>
-  <span class="icon material-symbols-rounded">
+  <span class="material-symbols-rounded">
     {{ name }}
   </span>
 </template>
@@ -21,16 +39,32 @@ defineProps({
 
 
 <style lang="scss" scoped>
+span {
+  font-size: 2em;
+}
+
+
+.icon {
+  // font-size: inherit;
+}
 span.icon:hover {
   // transform: scale(2);
 }
-.material-symbols-rounded {
-  font-variation-settings:
-  'FILL' 1,
-  'wght' 500,
-  'GRAD' 0,
-  'opsz' 24
-}
+// .material-symbols-rounded {
+//   font-variation-settings:
+//   'FILL' 1,
+//   'wght' 500,
+//   'GRAD' 0,
+//   'opsz' 24
+// }
 
+.material-symbols-rounded {
+  font-size: inherit;
+  font-variation-settings:
+  'FILL' v-bind(FILL),
+  'wght' v-bind(wght),
+  'GRAD' v-bind(GRAD),
+  'opsz' v-bind(opsz)
+}
 
 </style>

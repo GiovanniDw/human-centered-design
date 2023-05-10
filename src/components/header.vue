@@ -11,7 +11,7 @@ const { y } = useWindowScroll()
 const storyblokApi = useStoryblokApi()
 const { data } = await storyblokApi.get('cdn/stories/config', {
   version: 'draft',
-  resolve_links: 'url',
+  resolve_links: 'url'
 })
 
 const headerMenu = ref(null)
@@ -43,7 +43,7 @@ transform.transformPerspective
     :class="{
       scrolled: y > 10,
       'mobile-nav': largerThanMobile === false,
-      'mobile-nav-open': mobileNavOpen && largerThanMobile === false,
+      'mobile-nav-open': mobileNavOpen && largerThanMobile === false
     }"
   >
     <div class="header-start">
@@ -55,11 +55,7 @@ transform.transformPerspective
           Request Demo
           <span class="icon material-symbols-rounded">chevron_right</span>
         </NuxtLink>
-        <button
-          @click="toggleMobileNav()"
-          class="nav-toggle"
-          :class="{ open: mobileNavOpen }"
-        >
+        <button @click="toggleMobileNav()" class="nav-toggle" :class="{ open: mobileNavOpen }">
           <span class="nav-toggle-icon" :class="{ open: mobileNavOpen }" />
         </button>
       </div>
@@ -88,11 +84,7 @@ transform.transformPerspective
       </template>
     </nav>
     <div class="header-end">
-      <NuxtLink
-        to="https://app.oneclicklayout.io/login"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <NuxtLink to="https://app.oneclicklayout.io/login" target="_blank" rel="noopener noreferrer">
         Login
         <span class="icon material-symbols-rounded">open_in_new</span>
       </NuxtLink>
