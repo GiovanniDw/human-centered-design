@@ -164,7 +164,7 @@ const footerHeight = computed(() => {
   <form class="chat-form" @submit.prevent.self="onSubmit" >
     <div class="icon-input-group">
       <button class="icon-btn icon-select-button" :class="{ open: chatEmotesOpen }" @click.capture="toggleChatEmotesOpen()">
-        <BaseIcon v-if="chatEmotesOpen" name="remove" />
+        <BaseIcon v-if="chatEmotesOpen" name="remove" class="open" />
         <BaseIcon v-else name="add" />
       </button>
         <div class="icon-select-group" :class="{ open: chatEmotesOpen }">
