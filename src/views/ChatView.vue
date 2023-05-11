@@ -14,6 +14,10 @@ import BaseIcon from '@/components/icons/BaseIcon.vue'
 import ImgIcon from '@/components/icons/ImgIcon.vue';
 import ChatMessage from '@/components/ChatMessage.vue'
 
+defineProps({
+  headerHeight: String
+})
+
 const messages = ref([])
 const message = ref('')
 const chatContainer = ref(null)
@@ -130,13 +134,9 @@ const footerHeight = computed(() => {
   </div>
 </main>
 
-<footer ref="footerRef" class="chat-input">
+<footer ref="footerRef">
   <form class="chat-form" @submit.prevent="">
     <fieldset class="icon-input-group">
-        <button class="icon-btn icon-select-button" @click="toggleChatEmotesOpen()">
-          <ImgIcon v-if="chatImgEmote" :src="chatImgEmote" />
-          <BaseIcon v-else name="add_reaction" />
-        </button>
         <div class="icon-select-group" :class="{ open: chatEmotesOpen }">
           <label class="icon-select" v-for="(item, index) in chatImgEmoteList" :key="index"
                  :for="index">
@@ -144,12 +144,15 @@ const footerHeight = computed(() => {
             <ImgIcon :name="item.name" :src="item.src" />
           </label>
         </div>
+        <button class="icon-btn icon-select-button" @click="toggleChatEmotesOpen()">
+          <ImgIcon v-if="chatImgEmote" :src="chatImgEmote" />
+          <BaseIcon v-else name="add_reaction" />
+        </button>
       </fieldset>
     <input class="message-input" type="textarea" v-model="message" required
            placeholder="your message" />
-      
     <button class="icon-btn send-button" type="submit" @keyup.enter.left="onSubmit" @submit="onSubmit" @click="onSubmit">
-      <BaseIcon name="send" />
+      <BaseIcon :FILL="1" :wght="500" :GRAD="1" :opsz="25" name="send" />
     </button>
   </form>
 </footer>
@@ -170,10 +173,12 @@ const footerHeight = computed(() => {
 fieldset {
   padding: 0;
   margin: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  border: 0;
+  align-self: flex-start;
 }
-button {
-  cursor: pointer;
-}
+//on fieldset
 .icon-input-group {
   // font-size: var(--icon-size);
   // padding: .5em;
@@ -182,9 +187,18 @@ button {
   border-radius: 100%;
   display: flex;
   align-items: center;
+  
+  left: 0;
   justify-content: center;
   color: var(--color-alert);
+  margin: 0;
 }
+
+
+button {
+  cursor: pointer;
+}
+
 
 // button.icon-select-button {
 //   // padding: .25em;
@@ -200,13 +214,17 @@ button {
 //   }
 // }
 
+
+
+// open/close btn
 .icon-btn {
   border-radius: 100%;
-
+// padding: .1em;
   margin: 0;
   border: 0;
 
-  padding: 1em;
+  padding: .8em;
+  margin: 3px;
   // padding: .25em;
   // font-size: var(--icon-size);
   // font-size:var(--icon-size);
@@ -230,18 +248,7 @@ button {
   }
 }
 
-.send-button {
-  appearance: none;
 
-  border: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  // height: 1.5em;
-  // width: 1.5em;
-  // font-size: var(--icon-size);
-}
 
 .icon-select-group {
   align-items: center;
@@ -359,39 +366,61 @@ main {
   gap: 1em;
 }
 
-.chat-form {
+
+
+footer {
+  padding: 1em;
+  // box-shadow: ;
+  width: 100%;
+  /* position: relative; */
+  bottom: 0;
+  // padding-bottom: var(save);
+  bottom: env(safe-area-inset-bottom);
+  // padding: .5em;
+  // min-height: 0;
+  position: fixed;
+  left: 0;
+// border-top: 1px solid var(--color-background-mute);
+  form.chat-form {
   display: flex;
   flex-direction: row;
-  justify-items: stretch;
+  justify-items: center;
   justify-content: space-between;
   align-items: center;
 }
 
-footer {
-  // box-shadow: ;
-  width: 100%;
-  width: 100%;
-  /* position: relative; */
-  bottom: 0;
-  // padding: .5em;
-  // min-height: 0;
-  left: 0;
+  
+}
 
-  form {
-    // background: #000;
-    // padding: 1em;
-    gap: 1em;
-    margin: 1em;
-    // border: 1px solid red;
-  }
-
-  .message-input {
+input[type='textarea'].message-input {
+  border-radius: 3em;
+  position: absolute;
+    border: 2px solid var(--color-background-mute);
+    height: 100%;
     width: 100%;
-    border: 0;
-    padding-left: 1em;
-    // padding: 1em;
+    font-size: 1em;
+    // border: 0;
+    
+    padding: 1em;
+    padding-left: 4em;
     min-height: 2em;
+    
     // height: auto;
   }
+
+
+
+  .send-button {
+  appearance: none;
+
+  border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  // height: 1.5em;
+  // width: 1.5em;
+  // font-size: var(--icon-size);
 }
+
 </style>

@@ -4,10 +4,12 @@ import { onMounted, onUnmounted, ref, computed } from 'vue'
 // import ChatView from '@/components/ChatView.vue'
 import BaseIcon from './components/icons/BaseIcon.vue'
 import { RouterLink, RouterView } from 'vue-router';
+
+const headerRef = ref(null)
 </script>
 
 <template>
-<header>
+<header ref="headerRef">
   <div class="profile">
     <RouterLink to="/">
       <BaseIcon class='avatar' name="person" /> <span>Barry</span>
@@ -25,6 +27,10 @@ import { RouterLink, RouterView } from 'vue-router';
 header {
   display: flex;
   justify-content: space-between;
+  position: fixed;
+  z-index: 3;
+  width: 100%;
+  background: var(--color-background);
   align-items: center;
   align-content: center;
   // min-height: 1em;
