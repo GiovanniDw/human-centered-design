@@ -23,11 +23,11 @@ const headerHeight = computed(() => {
 <header ref="headerRef">
   <div class="profile">
     <RouterLink to="/">
-      <BaseIcon class='avatar' name="person" /> <span>Barry</span>
+      <BaseIcon class='avatar' name="person" /> <span>Jhon Doe</span>
     </RouterLink>
   </div>
   <div>
-    <RouterLink to="/v1">v1</RouterLink>
+    <RouterLink to="/v1">Other Chat</RouterLink>
   </div>
 </header>
 <RouterView />

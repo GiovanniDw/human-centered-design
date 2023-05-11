@@ -8,7 +8,8 @@ const props = defineProps({
   icon: String,
   me: Boolean,
   time: String,
-  src: String
+  src: String,
+  color: String
 })
 
 // props.me ? isMyMessage.value = false : true
@@ -58,15 +59,19 @@ const props = defineProps({
 }
 
 .icon-wrapper {
+  font-size: 1.2em;
   color: var(--color-text-invert);
   display: flex;
   align-items: center;
   align-content: center;
   position: absolute;
-  top: -1em;
-  left: -1em;
-  background: #000;
+  top: -1.5em;
+  left: -1.5em;
+  background: inherit;
   border-radius: 100%;
-  padding: 0.3em;
+  padding: 0.5em;
+  border: 1px solid var(--color-background-mute);
+  box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.1);
+  background-color: v-bind(color);
 }
 </style>

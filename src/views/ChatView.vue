@@ -8,7 +8,10 @@ import {
   useToggle,
   useElementSize,
   useElementBounding,
-  objectEntries
+  objectEntries,
+useArrayFindIndex,
+useArrayFind,
+useArrayFilter
 } from '@vueuse/core'
 import BaseIcon from '@/components/icons/BaseIcon.vue'
 import ImgIcon from '@/components/icons/ImgIcon.vue';
@@ -22,7 +25,8 @@ const messages = ref([])
 const message = ref('')
 const chatContainer = ref(null)
 const chatEmote = ref('')
-const chatImgEmote = ref('')
+const chatImgEmote = ref()
+const chatImgEmoteColor = ref('')
 const footerRef = ref(null);
 // const footerHeight = ref(0)
 const chatEmoteList = ref([
@@ -41,21 +45,24 @@ import suppression from '@/assets/icons/suppression.png';
 import tiedHands from '@/assets/icons/tied-hands.png';
 import yesOrNo from '@/assets/icons/yes-or-no.png';
 
+const emote = {
+  happy: 'green',
+  neutral: 'orange',
+  mad: 'red'
+}
 
 const chatImgEmoteList = ref([
-  { name: 'facepalm', src: facepalm },
-  { name: 'group task', src: groupTask },
-  { name: 'ignore', src: ignore },
-  { name: 'learning', src: learning },
-  { name: 'mad', src: mad },
-  { name: 'silence', src: silence },
-  { name: 'strike', src: strike },
-  { name: 'suppression', src: suppression },
-  { name: 'tiedHands', src: tiedHands },
-  { name: 'yesOrNo', src: yesOrNo },
+  { name: 'facepalm', src: facepalm, color: emote.mad },
+  { name: 'group task', src: groupTask, color: emote.neutral },
+  { name: 'ignore', src: ignore, color: emote.neutral },
+  { name: 'learning', src: learning, color: emote.neutral },
+  { name: 'mad', src: mad, color: emote.mad },
+  { name: 'silence', src: silence, color: emote.mad },
+  { name: 'strike', src: strike, color: emote.happy },
+  { name: 'suppression', src: suppression, color: emote.mad },
+  { name: 'tiedHands', src: tiedHands, color: emote.mad },
+  { name: 'yesOrNo', src: yesOrNo, color: emote.neutral },
 ])
-
-
 
 const chatEmotesOpen = ref(false)
 const toggleChatEmotesOpen = useToggle(chatEmotesOpen)
@@ -89,11 +96,20 @@ const setFooterHeight = reactive({
 const onSubmit = () => {
   const { x, y } = useScroll(chatContainer)
 
+  let index = chatImgEmote.value
+  const item = useArrayFind(chatImgEmoteList, val => val.src == index)
+  // const result = useArrayFindIndex(chatImgEmoteList, i => i % index === i)
+  
+  const result = useArrayFilter(chatImgEmoteList, i => i.name == index)
+  console.log(index) 
+  console.log(result.value[0])
+  console.log(chatImgEmote.value);
   const formatted = useDateFormat(date, 'YYYY-MM-DD HH:mm:ss')
   const newMessage = new Object({
     msg: message.value,
-    icon: chatImgEmote.value,
-    src: chatImgEmote.value,
+    icon:result.value[0].name,
+    src: result.value[0].src,
+    color: result.value[0].color,
     me: true,
     time: timeAgo
   })
@@ -109,6 +125,8 @@ const onSubmit = () => {
   }, 500);
   
 }
+
+console.log(chatImgEmote)
 
 // chatImgEmote
 
@@ -135,7 +153,7 @@ const footerHeight = computed(() => {
   <div id="chat-messages" ref="chatContainer">
     <TransitionGroup name="list" @enter="onMessage">
       <template v-for="(item, index) in messages" :key="index">
-        <ChatMessage :msg="item.msg" :icon="item.icon" :src="item.src" :me="item.me"
+        <ChatMessage :msg="item.msg" :icon="item.icon" :src="item.src" :me="item.me" :color="item.color"
                      :time="item.time" />
       </template>
     </TransitionGroup>
@@ -145,23 +163,21 @@ const footerHeight = computed(() => {
 <footer ref="footerRef">
   <form class="chat-form" @submit.prevent.self="onSubmit" >
     <div class="icon-input-group">
-      <button class="icon-btn icon-select-button" @click.capture="toggleChatEmotesOpen()">
-        <ImgIcon v-if="chatImgEmote" :src="chatImgEmote" />
-        <BaseIcon v-else name="add_reaction" />
+      <button class="icon-btn icon-select-button" :class="{ open: chatEmotesOpen }" @click.capture="toggleChatEmotesOpen()">
+        <BaseIcon v-if="chatEmotesOpen" name="remove" />
+        <BaseIcon v-else name="add" />
       </button>
-      
         <div class="icon-select-group" :class="{ open: chatEmotesOpen }">
           <TransitionGroup>
-            <label class="icon-select" v-for="(item, index) in chatImgEmoteList" :key="index"
+            <label class="icon-select" v-for="(item, index) in chatImgEmoteList" :key="item.name"
                    :for="item.name">
-              <input type="radio" :id="item.name" :name="item.name" :value="item.src"
+              <input type="radio" :id="item.name" :name="item.name" :value="item.name"
                      v-model="chatImgEmote" />
               <ImgIcon :name="item.name" :src="item.src" />
-            </label>
+            </label> 
           </TransitionGroup>
         </div>
     </div>
-
     <input class="message-input" type="text" v-model="message" placeholder="your message"
            required />
     <button class="icon-btn send-button" type="submit" @click.capture="onSubmit" :disabled="!message">
@@ -349,9 +365,11 @@ button {
     z-index: 3;
     appearance: none;
     font-size: inherit;
+    padding: .8em;
 
     &:checked {
-      opacity: 0;
+      border: 2px solid var(--color-background-theme);
+      border-radius: 100%;
     }
   }
 }
