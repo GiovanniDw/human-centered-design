@@ -4,8 +4,19 @@ import { onMounted, onUnmounted, ref, computed } from 'vue'
 // import ChatView from '@/components/ChatView.vue'
 import BaseIcon from './components/icons/BaseIcon.vue'
 import { RouterLink, RouterView } from 'vue-router';
+import { useElementBounding } from '@vueuse/core';
 
-const headerRef = ref(null)
+const headerRef = ref(null);
+
+const { height } = useElementBounding(headerRef);
+
+
+
+const headerHeight = computed(() => {
+  const { height } = useElementBounding(headerRef);
+  return height.value + 'px'
+})
+
 </script>
 
 <template>
@@ -20,8 +31,14 @@ const headerRef = ref(null)
   </div>
 </header>
 <RouterView />
-<!-- <ChatView /> -->
 </template>
+
+<style>
+main {
+  margin-top: v-bind(headerHeight);
+}
+
+</style>
 
 <style lang="scss" scoped>
 header {
@@ -38,7 +55,7 @@ header {
   padding: 0.7em;
   // position: sticky;
   top: 0;
-  border-bottom: 1px solid var(--color-background-soft);
+  border-bottom: 1px solid var(--color-background-mute);
 
   .profile {
     display: flex;

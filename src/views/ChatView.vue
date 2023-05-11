@@ -98,12 +98,20 @@ const onSubmit = () => {
     time: timeAgo
   })
   messages.value.push(newMessage)
-  chatEmotesOpen.value = false
-  chatImgEmote.value = ''
-  chatEmote.value = ''
+  chatEmotesOpen.value = false;
+  chatImgEmote.value = '';
+  chatEmote.value = '';
   message.value = '';
+
+
+  setTimeout(() => {
+    sendBotMessage()  
+  }, 500);
   
 }
+
+// chatImgEmote
+
 
 const onMessage = (el, done) => {
   chatContainer.value.scrollTop = chatContainer.value.scrollHeight
@@ -135,23 +143,28 @@ const footerHeight = computed(() => {
 </main>
 
 <footer ref="footerRef">
-  <form class="chat-form" @submit.prevent="">
-    <fieldset class="icon-input-group">
+  <form class="chat-form" @submit.prevent.self="onSubmit" >
+    <div class="icon-input-group">
+      <button class="icon-btn icon-select-button" @click.capture="toggleChatEmotesOpen()">
+        <ImgIcon v-if="chatImgEmote" :src="chatImgEmote" />
+        <BaseIcon v-else name="add_reaction" />
+      </button>
+      
         <div class="icon-select-group" :class="{ open: chatEmotesOpen }">
-          <label class="icon-select" v-for="(item, index) in chatImgEmoteList" :key="index"
-                 :for="index">
-            <input type="radio" :id="index" :value="item.src" v-model="chatImgEmote" />
-            <ImgIcon :name="item.name" :src="item.src" />
-          </label>
+          <TransitionGroup>
+            <label class="icon-select" v-for="(item, index) in chatImgEmoteList" :key="index"
+                   :for="item.name">
+              <input type="radio" :id="item.name" :name="item.name" :value="item.src"
+                     v-model="chatImgEmote" />
+              <ImgIcon :name="item.name" :src="item.src" />
+            </label>
+          </TransitionGroup>
         </div>
-        <button class="icon-btn icon-select-button" @click="toggleChatEmotesOpen()">
-          <ImgIcon v-if="chatImgEmote" :src="chatImgEmote" />
-          <BaseIcon v-else name="add_reaction" />
-        </button>
-      </fieldset>
-    <input class="message-input" type="textarea" v-model="message" required
-           placeholder="your message" />
-    <button class="icon-btn send-button" type="submit" @keyup.enter.left="onSubmit" @submit="onSubmit" @click="onSubmit">
+    </div>
+
+    <input class="message-input" type="text" v-model="message" placeholder="your message"
+           required />
+    <button class="icon-btn send-button" type="submit" @click.capture="onSubmit" :disabled="!message">
       <BaseIcon :FILL="1" :wght="500" :GRAD="1" :opsz="25" name="send" />
     </button>
   </form>
@@ -178,6 +191,7 @@ fieldset {
   border: 0;
   align-self: flex-start;
 }
+
 //on fieldset
 .icon-input-group {
   // font-size: var(--icon-size);
@@ -187,7 +201,7 @@ fieldset {
   border-radius: 100%;
   display: flex;
   align-items: center;
-  
+
   left: 0;
   justify-content: center;
   color: var(--color-alert);
@@ -197,8 +211,16 @@ fieldset {
 
 button {
   cursor: pointer;
+
+  &:disabled {
+    opacity: .5;
+  }
 }
 
+.icon-select-button {
+  color: var(--color-background-theme);
+  background-color: var(--color-background-soft);
+}
 
 // button.icon-select-button {
 //   // padding: .25em;
@@ -219,7 +241,7 @@ button {
 // open/close btn
 .icon-btn {
   border-radius: 100%;
-// padding: .1em;
+  // padding: .1em;
   margin: 0;
   border: 0;
 
@@ -232,8 +254,8 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  z-index: 4;
+  // position: absolute;
+  z-index: 9999999;
   // height: 1.5em;
   // width: 1.5em;
 
@@ -260,31 +282,40 @@ button {
   position: absolute;
   bottom: 0;
   transition: all 300ms;
-  opacity: 0;
-  z-index: 1;
+
+  z-index: 0;
   // font-size:1.25em;
 
   .icon-select {
+    transition: all 100ms ease-in-out;
     position: absolute;
-    bottom: 0;
+    bottom: .2em;
+
+    opacity: 0;
+    z-index: 0;
     // font-size:1.25em;
   }
 
   &.open {
-    display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: auto;
-    opacity: 1;
+    flex-wrap: wrap;
+    width: 50vw;
+    flex-direction: row;
+    justify-content: flex-start;
+    // display: grid;
+    // grid-template-columns: auto;
+    // grid-template-rows: auto;
+
     bottom: v-bind(footerHeight);
     position: absolute;
     left: 0;
     gap: 1em;
-    z-index: 100;
+    z-index: 2;
 
     .icon-select {
       position: relative;
       bottom: 0;
-      padding: 1em;
+      opacity: 1;
+      padding: .8em;
       z-index: 2;
     }
   }
@@ -295,7 +326,7 @@ button {
   color: var(--color-divider-dark-1);
   background-color: var(--color-background);
   border: 1px solid var(--color-border);
-  z-index: 0;
+  // z-index: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -304,17 +335,8 @@ button {
   width: 1.5em;
   height: 1.5em;
 
-  label {
-    // padding: .25em;
-    // // display: flex;
-    // display: inline-block;
-    // position: absolute;
-    // width: 1.5em;
-    // height: 1.5em;
-    // margin: auto;
-  }
-
   &:has(:checked) {
+    opacity: 1;
     color: var(--color-divider-dark-2);
     z-index: 9999999;
   }
@@ -362,6 +384,7 @@ main {
   /* align-items: flex-start; */
   width: auto;
   overflow-y: scroll;
+  overscroll-behavior-y: contain;
   width: 100%;
   gap: 1em;
 }
@@ -378,41 +401,59 @@ footer {
   bottom: env(safe-area-inset-bottom);
   // padding: .5em;
   // min-height: 0;
-  position: fixed;
+  position: sticky;
   left: 0;
-// border-top: 1px solid var(--color-background-mute);
+
+  // border-top: 1px solid var(--color-background-mute);
   form.chat-form {
-  display: flex;
-  flex-direction: row;
-  justify-items: center;
-  justify-content: space-between;
-  align-items: center;
-}
-
-  
-}
-
-input[type='textarea'].message-input {
-  border-radius: 3em;
-  position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 20em;
+    padding: 0;
+    margin-block-end: 0;
+    margin-block-start: 0;
     border: 2px solid var(--color-background-mute);
-    height: 100%;
-    width: 100%;
-    font-size: 1em;
-    // border: 0;
-    
-    padding: 1em;
-    padding-left: 4em;
-    min-height: 2em;
-    
-    // height: auto;
+    background-color: var(--color-background-soft);
+
   }
 
 
+}
 
-  .send-button {
-  appearance: none;
+input[type='text'].message-input {
+  // display: block;
+  // border-radius: 3em;
+  position: relative;
+  // border: 2px solid var(--color-background-mute);
+  // background-color: var(--color-background-soft);
 
+  border: 0;
+  background-color: var(--color-background-soft);
+  // height: 100%;
+  width: 100%;
+  // font-size: 1em;
+  // border: 0;
+  color: var(--color-text);
+  padding: 1em;
+  min-height: 2em;
+
+  // height: auto;
+
+
+  &:focus-visible {
+    border-color: 1px solid var(--color-background-theme);
+  }
+}
+
+
+
+.send-button {
+  // appearance: none;
+  background-color: var(--color-blue);
+  color: var(--color-text-invert);
   border: 0;
   display: flex;
   align-items: center;
@@ -422,5 +463,4 @@ input[type='textarea'].message-input {
   // width: 1.5em;
   // font-size: var(--icon-size);
 }
-
 </style>

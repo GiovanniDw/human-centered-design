@@ -42,6 +42,8 @@ span {
 img {
   max-width: 2em;
   max-height: 2em;
+  height: 1.5em;
+  width: 1.5em;
 }
 .icon {
   // font-size: inherit;
