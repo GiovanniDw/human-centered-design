@@ -1,0 +1,84 @@
+{
+  "index.css": {
+    "file": "assets/index-56361561.css",
+    "src": "index.css"
+  },
+  "index.html": {
+    "assets": [
+      "assets/facepalm-e825beaf.png",
+      "assets/group-task-8c14da2c.png",
+      "assets/ignore-73616848.png",
+      "assets/learning-beac30a5.png",
+      "assets/mad-39984df3.png",
+      "assets/silence-d6a1ee39.png",
+      "assets/strike-9e51da02.png",
+      "assets/suppression-60e5ab55.png",
+      "assets/tied-hands-a7add521.png",
+      "assets/yes-or-no-1809161a.png"
+    ],
+    "css": [
+      "assets/index-56361561.css"
+    ],
+    "dynamicImports": [
+      "src/views/ChatViewFirst.vue"
+    ],
+    "file": "assets/index-a29a55da.js",
+    "isEntry": true,
+    "src": "index.html"
+  },
+  "src/assets/icons/facepalm.png": {
+    "file": "assets/facepalm-e825beaf.png",
+    "src": "src/assets/icons/facepalm.png"
+  },
+  "src/assets/icons/group-task.png": {
+    "file": "assets/group-task-8c14da2c.png",
+    "src": "src/assets/icons/group-task.png"
+  },
+  "src/assets/icons/ignore.png": {
+    "file": "assets/ignore-73616848.png",
+    "src": "src/assets/icons/ignore.png"
+  },
+  "src/assets/icons/learning.png": {
+    "file": "assets/learning-beac30a5.png",
+    "src": "src/assets/icons/learning.png"
+  },
+  "src/assets/icons/mad.png": {
+    "file": "assets/mad-39984df3.png",
+    "src": "src/assets/icons/mad.png"
+  },
+  "src/assets/icons/silence.png": {
+    "file": "assets/silence-d6a1ee39.png",
+    "src": "src/assets/icons/silence.png"
+  },
+  "src/assets/icons/strike.png": {
+    "file": "assets/strike-9e51da02.png",
+    "src": "src/assets/icons/strike.png"
+  },
+  "src/assets/icons/suppression.png": {
+    "file": "assets/suppression-60e5ab55.png",
+    "src": "src/assets/icons/suppression.png"
+  },
+  "src/assets/icons/tied-hands.png": {
+    "file": "assets/tied-hands-a7add521.png",
+    "src": "src/assets/icons/tied-hands.png"
+  },
+  "src/assets/icons/yes-or-no.png": {
+    "file": "assets/yes-or-no-1809161a.png",
+    "src": "src/assets/icons/yes-or-no.png"
+  },
+  "src/views/ChatViewFirst.css": {
+    "file": "assets/ChatViewFirst-2874697e.css",
+    "src": "src/views/ChatViewFirst.css"
+  },
+  "src/views/ChatViewFirst.vue": {
+    "css": [
+      "assets/ChatViewFirst-2874697e.css"
+    ],
+    "file": "assets/ChatViewFirst-042961ff.js",
+    "imports": [
+      "index.html"
+    ],
+    "isDynamicEntry": true,
+    "src": "src/views/ChatViewFirst.vue"
+  }
+}
