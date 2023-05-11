@@ -1,6 +1,6 @@
 {
   "index.css": {
-    "file": "assets/index-07da61f9.css",
+    "file": "assets/index-5897647f.css",
     "src": "index.css"
   },
   "index.html": {
@@ -17,12 +17,12 @@
       "assets/yes-or-no-1809161a.png"
     ],
     "css": [
-      "assets/index-07da61f9.css"
+      "assets/index-5897647f.css"
     ],
     "dynamicImports": [
       "src/views/ChatViewFirst.vue"
     ],
-    "file": "assets/index-8a575519.js",
+    "file": "assets/index-ecb278e8.js",
     "isEntry": true,
     "src": "index.html"
   },
@@ -74,7 +74,7 @@
     "css": [
       "assets/ChatViewFirst-2874697e.css"
     ],
-    "file": "assets/ChatViewFirst-2fa94791.js",
+    "file": "assets/ChatViewFirst-f92de980.js",
     "imports": [
       "index.html"
     ],
