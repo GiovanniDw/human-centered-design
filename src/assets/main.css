@@ -28,17 +28,17 @@ font-size: 1em;
 a,
 .green {
   text-decoration: none;
-  color: var(--color-blue);
+  color: var(--color-background-mute);
   transition: 0.4s;
 }
 
 @media (hover: hover) {
   a:hover {
-    color: var(--color-text-theme);
+    color: var(--color-blue-hover);
   }
 }
 .router-link-active {
-  color: var(--color-blue-active);
+  color: var(--color-background);
 }
 
 
