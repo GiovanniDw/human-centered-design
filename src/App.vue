@@ -47,7 +47,7 @@ header {
   position: fixed;
   z-index: 3;
   width: 100%;
-  background: var(--color-background);
+  background: var(--color-background-theme);
   align-items: center;
   align-content: center;
   // min-height: 1em;

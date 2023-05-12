@@ -34,7 +34,7 @@ a,
 
 @media (hover: hover) {
   a:hover {
-    color: var(--color-blue-hover);
+    color: var(--color-text-theme);
   }
 }
 .router-link-active {
