@@ -8,7 +8,8 @@
 
 defineProps({
   name: String,
-  src: String
+  src: String,
+  color: String
 });
 
 // import facepalm from '@/assets/icons/facepalm.png';
@@ -37,6 +38,8 @@ span {
   display: flex;
   align-items: center;
   align-content: center;
+  background-color: v-bind(color);
+  border-radius: 100%;
 }
 
 img {
