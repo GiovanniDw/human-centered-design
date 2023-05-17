@@ -1,16 +1,16 @@
 <script setup>
-  // defineProps = ({
-  //   name: String,
-  //   fill: Number,
-  //   weight: Number,
-  //   opsz: Number
-  // });
+// defineProps = ({
+//   name: String,
+//   fill: Number,
+//   weight: Number,
+//   opsz: Number
+// });
 
 defineProps({
   name: String,
   src: String,
   color: String
-});
+})
 
 // import facepalm from '@/assets/icons/facepalm.png';
 // import groupTask from '@/assets/icons/group-task.png';
@@ -22,14 +22,12 @@ defineProps({
 // import suppression from '@/assets/icons/suppression.png';
 // import tiedHands from '@/assets/icons/tied-hands.png';
 // import yesOrNo from '@/assets/icons/yes-or-no.png';
-
-
 </script>
 
 <template>
-<span class="emote-img">
-  <img :src="src" alt="icon"/>
-</span>
+  <span class="emote-img">
+    <img :src="src" alt="icon" />
+  </span>
 </template>
 
 <style lang="scss" scoped>
@@ -61,6 +59,4 @@ span.icon:hover {
 //   'GRAD' 0,
 //   'opsz' 24
 // }
-
-
 </style>

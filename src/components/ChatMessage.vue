@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import ImgIcon from '@/components/icons/ImgIcon.vue';
+import ImgIcon from '@/components/icons/ImgIcon.vue'
 const isMyMessage = ref(false)
 const props = defineProps({
   name: String,

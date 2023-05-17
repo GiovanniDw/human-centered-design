@@ -3,41 +3,38 @@ import { onMounted, onUnmounted, ref, computed } from 'vue'
 
 // import ChatView from '@/components/ChatView.vue'
 import BaseIcon from './components/icons/BaseIcon.vue'
-import { RouterLink, RouterView } from 'vue-router';
-import { useElementBounding } from '@vueuse/core';
+import { RouterLink, RouterView } from 'vue-router'
+import { useElementBounding } from '@vueuse/core'
 
-const headerRef = ref(null);
+const headerRef = ref(null)
 
-const { height } = useElementBounding(headerRef);
-
-
+const { height } = useElementBounding(headerRef)
 
 const headerHeight = computed(() => {
-  const { height } = useElementBounding(headerRef);
+  const { height } = useElementBounding(headerRef)
   return height.value + 'px'
 })
-
 </script>
 
 <template>
-<header ref="headerRef">
-  <div class="profile">
-    <RouterLink to="/">
-      <BaseIcon class='avatar' name="person" /> <span>Jhon Doe</span>
-    </RouterLink>
-  </div>
-  <div>
-    <RouterLink to="/v1">Other Chat</RouterLink>
-  </div>
-</header>
-<RouterView />
+  <header ref="headerRef">
+    <div class="profile">
+      <RouterLink to="/">
+        <BaseIcon class="avatar" name="person" /> <span>Jhon Doe</span>
+      </RouterLink>
+    </div>
+    <nav>
+      <RouterLink to="/first-chat">First Chat</RouterLink>
+      <RouterLink to="/second-chat">Second Chat</RouterLink>
+    </nav>
+  </header>
+  <RouterView />
 </template>
 
 <style>
 main {
   margin-top: v-bind(headerHeight);
 }
-
 </style>
 
 <style lang="scss" scoped>
@@ -72,8 +69,13 @@ header {
     }
 
     .avatar {
-      padding: .5em;
+      padding: 0.5em;
     }
   }
+}
+
+nav {
+  display: flex;
+  gap: 1em;
 }
 </style>

@@ -3,7 +3,7 @@
 #app {
   min-height: 0;
   /* padding: 1em; */
-font-size: 1em;
+  font-size: 1em;
   min-height: 0;
   min-width: 0;
   display: flex;
@@ -40,8 +40,6 @@ a,
 .router-link-active {
   color: var(--color-background);
 }
-
-
 
 @media (min-width: 1024px) {
   body {

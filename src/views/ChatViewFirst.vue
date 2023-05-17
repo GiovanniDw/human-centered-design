@@ -7,7 +7,7 @@ import {
   useScroll,
   useToggle,
   useElementSize,
-useElementBounding
+  useElementBounding
 } from '@vueuse/core'
 import BaseIcon from '@/components/icons/BaseIcon.vue'
 import ChatMessageFirst from '@/components/ChatMessageFirst.vue'
@@ -16,7 +16,7 @@ const messages = ref([])
 const message = ref('')
 const chatContainer = ref(null)
 const chatEmote = ref('')
-const footerRef = ref(null);
+const footerRef = ref(null)
 // const footerHeight = ref(0)
 const chatEmoteList = ref([
   { name: 'sentiment_satisfied', color: 'var(--color-succes)' },
@@ -76,12 +76,9 @@ const onMessage = (el, done) => {
 // })
 
 const footerHeight = computed(() => {
-  const { height } = useElementBounding(footerRef);
+  const { height } = useElementBounding(footerRef)
   return height.value + 'px'
 })
-
-
-
 </script>
 
 <template>

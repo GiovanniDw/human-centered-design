@@ -1,10 +1,10 @@
 <script setup>
-  // defineProps = ({
-  //   name: String,
-  //   fill: Number,
-  //   weight: Number,
-  //   opsz: Number
-  // });
+// defineProps = ({
+//   name: String,
+//   fill: Number,
+//   weight: Number,
+//   opsz: Number
+// });
 
 defineProps({
   name: String,
@@ -23,11 +23,8 @@ defineProps({
   opsz: {
     type: Number,
     default: 24
-  },
-});
-
-
-
+  }
+})
 </script>
 
 <template>
@@ -36,13 +33,10 @@ defineProps({
   </span>
 </template>
 
-
-
 <style lang="scss" scoped>
 span {
   font-size: 2em;
 }
-
 
 .icon {
   // font-size: inherit;
@@ -60,11 +54,7 @@ span.icon:hover {
 
 .material-symbols-rounded {
   font-size: inherit;
-  font-variation-settings:
-  'FILL' v-bind(FILL),
-  'wght' v-bind(wght),
-  'GRAD' v-bind(GRAD),
-  'opsz' v-bind(opsz)
+  font-variation-settings: 'FILL' v-bind(FILL), 'wght' v-bind(wght), 'GRAD' v-bind(GRAD),
+    'opsz' v-bind(opsz);
 }
-
 </style>
