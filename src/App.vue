@@ -1,31 +1,45 @@
 <script setup>
-import { onMounted, onUnmounted, ref, computed } from 'vue'
+import { onMounted, onUnmounted, ref, computed } from "vue";
 
 // import ChatView from '@/components/ChatView.vue'
-import BaseIcon from './components/icons/BaseIcon.vue'
-import { RouterLink, RouterView } from 'vue-router'
-import { useElementBounding } from '@vueuse/core'
+import ModalBase from "@/components/ModalBase.vue";
+import BaseIcon from "./components/icons/BaseIcon.vue";
+import { RouterLink, RouterView } from "vue-router";
+import { set, useElementBounding } from "@vueuse/core";
+import ImageEditor from "@/components/ImageEditor.vue";
+import ImgIcon from "./components/icons/ImgIcon.vue";
+import avatar from "@/assets/avatar.png";
+const headerRef = ref(null);
 
-const headerRef = ref(null)
-
-const { height } = useElementBounding(headerRef)
+const { height } = useElementBounding(headerRef);
 
 const headerHeight = computed(() => {
-  const { height } = useElementBounding(headerRef)
-  return height.value + 'px'
-})
+  const { height } = useElementBounding(headerRef);
+  return height.value + "px";
+});
+
+import { useGlobalStore } from "@/stores/global.js";
+const store = useGlobalStore();
 </script>
 
 <template>
   <header ref="headerRef">
     <div class="profile">
+      <button class="profile" @click="store.open = true">
+        <ImgIcon :src="avatar" class="avatar" name="person" />
+      </button>
       <RouterLink to="/">
-        <BaseIcon class="avatar" name="person" /> <span>Jhon Doe</span>
+        <span>Jhon Doe</span>
       </RouterLink>
     </div>
+    <Teleport to="body">
+      <ModalBase title="Edit Avatar">
+        <ImageEditor />
+      </ModalBase>
+    </Teleport>
     <nav>
+      <RouterLink to="/second-chat">Final Chat</RouterLink>
       <RouterLink to="/first-chat">First Chat</RouterLink>
-      <RouterLink to="/second-chat">Second Chat</RouterLink>
     </nav>
   </header>
   <RouterView />
@@ -53,7 +67,11 @@ header {
   // position: sticky;
   top: 0;
   border-bottom: 1px solid var(--color-background-mute);
-
+  button.profile {
+    appearance: none;
+    border: 0;
+    background-color: transparent;
+  }
   .profile {
     display: flex;
     align-items: center;

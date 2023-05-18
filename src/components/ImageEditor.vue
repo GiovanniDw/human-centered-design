@@ -27,7 +27,6 @@ const onImgSubmit = () => {
 };
 
 console.log(imageInput.value);
-
 // const handleImageUpload = (event) => {
 //   event.preventDefault();
 
@@ -55,62 +54,27 @@ console.log(imageInput.value);
 </script>
 
 <template>
+  <div class="image-input">
+    <div class="input-group">
+      <label for="image">
+        <BaseIcon name="image" />
+      </label>
+      <input type="file" id="image" accept="image/*" @change="store.onFileChange" />
+    </div>
+    <div class="img-download">
+      <a target="_top" :href="store.cropImage">Open file</a>
+    </div>
+  </div>
+  <div class="cropper-container"></div>
   <div>
-    <div class="image-input">
-      <div class="input-group">
-        <label for="image">
-          <BaseIcon name="image" />
-        </label>
-        <input type="file" id="image" accept="image/*" @change="store.onFileChange" />
-      </div>
-      <div class="img-download">
-        <a target="_top" :href="store.cropImage">Open file</a>
-      </div>
+    <div class="controlls">
+      <button @click="store.crop">Crop</button>
+      <button @click="store.doRotate('+', 90)" value="90">Rotate +</button>
+      <button @click="store.doRotate('-', 90)" value="90">Rotate -</button>
+      <button @click="store.doFlip(true, false)">Flip</button>
+      <button @click="doFlip(false, true)">Flip Reverse</button>
     </div>
-    <div class="cropper-container">
-      <Cropper
-        ref="cropper"
-        class="cropper"
-        :src="store.url"
-        @change="store.onChange"
-        :canvas="{
-          minHeight: 0,
-          minWidth: 0,
-          maxHeight: 800,
-          maxWidth: 800,
-        }"
-        :stencil-props="{
-          handlers: {
-            eastNorth: true,
-            north: true,
-            westNorth: true,
-            west: true,
-            westSouth: true,
-            south: true,
-            eastSouth: true,
-            east: true,
-          },
-        }"
-      />
-      <Preview
-        :style="{ rotate: `rotate(${rotate + 'deg'})`, fontSize: fontSize + 'px' }"
-        class="preview"
-        :src="store.cropImage"
-        @change="store.onChange"
-        :coordinates="store.cropperCoords"
-        :defaultTransforms="store.defaultTransforms"
-      />
-    </div>
-    <div>
-      <div class="controlls">
-        <button @click="store.crop">Crop</button>
-        <button @click="store.doRotate('+', 90)" value="90">Rotate +</button>
-        <button @click="store.doRotate('-', 90)" value="90">Rotate -</button>
-        <button @click="store.doFlip(true, false)">Flip</button>
-        <button @click="doFlip(false, true)">Flip Reverse</button>
-      </div>
-      <img :src="store.cropImage" alt="" />
-    </div>
+    <img :src="store.cropImage" alt="" />
   </div>
 </template>
 
