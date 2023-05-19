@@ -10,21 +10,21 @@ defineProps({
   name: String,
   FILL: {
     type: Number,
-    default: 1
+    default: 1,
   },
   wght: {
     type: [Number, String],
-    default: 500
+    default: 500,
   },
   GRAD: {
     type: Number,
-    default: 0
+    default: 0,
   },
   opsz: {
     type: Number,
-    default: 24
-  }
-})
+    default: 24,
+  },
+});
 </script>
 
 <template>
@@ -35,7 +35,7 @@ defineProps({
 
 <style lang="scss" scoped>
 span {
-  font-size: 2em;
+  font-size: inherit;
 }
 
 .icon {
@@ -54,7 +54,9 @@ span.icon:hover {
 
 .material-symbols-rounded {
   font-size: inherit;
-  font-variation-settings: 'FILL' v-bind(FILL), 'wght' v-bind(wght), 'GRAD' v-bind(GRAD),
-    'opsz' v-bind(opsz);
+  font-size: 1.5em;
+
+  font-variation-settings: "FILL" v-bind(FILL), "wght" v-bind(wght), "GRAD" v-bind(GRAD),
+    "opsz" v-bind(opsz);
 }
 </style>

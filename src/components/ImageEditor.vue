@@ -40,6 +40,8 @@ const onCrop = (e) => {
   data.value = e.detail;
 };
 
+const rotateValue = ref(0);
+
 const cropperOptions = reactive({
   aspectRatio: 0,
   viewMode: 0,
@@ -123,27 +125,38 @@ const openCanvasModal = (options) => {
     preview=".img-preview"
     v-bind="cropperOptions"
     @crop="onCrop"
+    :imageStyle="{
+      maxWidth: 500,
+    }"
   />
   <div>
     <div class="controlls">
-      <button @click="store.crop">Crop</button>
+      <!-- <button @click="store.crop">Crop</button>
       <button @click="store.doRotate('+', 90)" value="90">Rotate +</button>
       <button @click="store.doRotate('-', 90)" value="90">Rotate -</button>
       <button @click="store.doFlip(true, false)">Flip</button>
-      <button @click="doFlip(false, true)">Flip Reverse</button>
+      <button @click="doFlip(false, true)">Flip Reverse</button> -->
 
-      <div>
+      <div class="docs-buttons">
         <a-radio-group v-model:value="cropperOptions.aspectRatio" button-style="solid">
-          <a-radio-button :value="0">Free</a-radio-button>
-          <a-radio-button :value="16 / 9">16:9</a-radio-button>
-          <a-radio-button :value="4 / 3">4:3</a-radio-button>
-          <a-radio-button :value="1">1:1</a-radio-button>
-          <a-radio-button :value="2 / 3">2:3</a-radio-button>
+          <a-radio-button :value="0"><BaseIcon name="crop_free" /></a-radio-button>
+          <a-radio-button :value="16 / 9">
+            <BaseIcon name="crop_16_9" />
+          </a-radio-button>
+          <a-radio-button :value="4 / 3">
+            <BaseIcon name="crop_landscape" />
+          </a-radio-button>
+          <a-radio-button :value="1">
+            <BaseIcon name="crop_square" />
+          </a-radio-button>
+          <a-radio-button :value="2 / 3">
+            <BaseIcon name="crop_portrait" />
+          </a-radio-button>
         </a-radio-group>
 
         <a-button
           type="primary"
-          @click="openCanvasModal({ maxWidth: 4096, maxHeight: 4096 })"
+          @click="openCanvasModal({ maxWidth: 500, maxHeight: 500 })"
         >
           Get Cropped Canvas
         </a-button>
@@ -152,69 +165,89 @@ const openCanvasModal = (options) => {
         <div class="docs-buttons">
           <a-button-group>
             <a-button type="primary" @click="vueCropperRef?.setDragMode('move')">
-              <template #icon><drag-outlined /></template>
+              <template #icon> <drag-outlined /> </template>
             </a-button>
             <a-button type="primary" @click="vueCropperRef?.setDragMode('crop')">
-              <template #icon><gateway-outlined /></template>
+              <template #icon> <gateway-outlined /> </template>
             </a-button>
           </a-button-group>
-          <a-button-group>
+          <a-button-group class="button-group">
             <a-button type="primary" @click="vueCropperRef?.zoom(0.1)">
-              <template #icon><zoom-in-outlined /></template>
+              <template #icon>
+                <BaseIcon name="photo_size_select_large" />
+              </template>
             </a-button>
             <a-button type="primary" @click="vueCropperRef?.zoom(-0.1)">
-              <template #icon><zoom-out-outlined /></template>
+              <template #icon>
+                <BaseIcon name="photo_size_select_small" />
+              </template>
             </a-button>
           </a-button-group>
           <a-button-group>
             <a-button type="primary" @click="vueCropperRef?.move(-10, 0)">
-              <template #icon><arrow-left-outlined /></template>
+              <template #icon>
+                <BaseIcon name="arrow_back" />
+              </template>
             </a-button>
             <a-button type="primary" @click="vueCropperRef?.move(10, 0)">
-              <template #icon><arrow-right-outlined /></template>
+              <template #icon>
+                <BaseIcon name="arrow_forward" />
+              </template>
             </a-button>
             <a-button type="primary" @click="vueCropperRef?.move(0, -10)">
-              <template #icon><arrow-up-outlined /></template>
+              <template #icon>
+                <BaseIcon name="arrow_upward" />
+              </template>
             </a-button>
             <a-button type="primary" @click="vueCropperRef?.move(0, 10)">
-              <template #icon><arrow-down-outlined /></template>
+              <template #icon>
+                <BaseIcon name="arrow_downward" />
+              </template>
             </a-button>
           </a-button-group>
           <a-button-group>
             <a-button type="primary" @click="vueCropperRef?.rotate(-45)">
-              <template #icon><rotate-left-outlined /></template>
+              <template #icon>
+                <BaseIcon name="rotate_left" />
+              </template>
             </a-button>
+
             <a-button type="primary" @click="vueCropperRef?.rotate(45)">
-              <template #icon><rotate-right-outlined /></template>
+              <template #icon>
+                <BaseIcon name="rotate_right" />
+              </template>
             </a-button>
           </a-button-group>
+
           <a-button-group>
             <a-button type="primary" @click="vueCropperRef?.flipX()">
-              <template #icon><swap-outlined /></template>
+              <template #icon> <BaseIcon name="swap_horiz" /> </template>
             </a-button>
             <a-button type="primary" @click="vueCropperRef?.flipY()">
-              <template #icon><swap-outlined :rotate="90" /></template>
+              <template #icon> <BaseIcon name="swap_vert" /> </template>
             </a-button>
           </a-button-group>
           <a-button-group>
             <a-button type="primary" @click="vueCropperRef?.crop()">
-              <template #icon><check-outlined /></template>
+              <template #icon> <check-outlined /> </template>
             </a-button>
             <a-button type="primary" @click="vueCropperRef?.clear()">
-              <template #icon><close-outlined /></template>
+              <template #icon>
+                <BaseIcon name="restart_alt" />
+              </template>
             </a-button>
           </a-button-group>
           <a-button-group>
             <a-button type="primary" @click="vueCropperRef?.disable()">
-              <template #icon><lock-outlined /></template>
+              <template #icon> <lock-outlined /> </template>
             </a-button>
             <a-button type="primary" @click="vueCropperRef?.enable()">
-              <template #icon><unlock-outlined /></template>
+              <template #icon> <unlock-outlined /> </template>
             </a-button>
           </a-button-group>
           <a-button-group>
             <a-button type="primary" @click="vueCropperRef?.reset()">
-              <template #icon><sync-outlined /></template>
+              <template #icon> <sync-outlined /> </template>
             </a-button>
             <input
               ref="fileInputRef"
@@ -224,15 +257,23 @@ const openCanvasModal = (options) => {
               @change="onFileSelect"
             />
             <a-button type="primary" @click="fileInputRef.click()">
-              <template #icon><upload-outlined /></template>
+              <template #icon> <upload-outlined /> </template>
             </a-button>
             <a-button type="primary" @click="vueCropperRef?.destroy()">
-              <template #icon><poweroff-outlined /></template>
+              <template #icon> <poweroff-outlined /> </template>
             </a-button>
           </a-button-group>
         </div>
       </div>
     </div>
+    <a-slider
+      width="100%"
+      :v-modal="rotateValue"
+      @onUpdate="vueCropperRef.rotate(rotateValue)"
+      :min="1"
+      :max="360"
+    />
+    <p>{{ rotateValue }}</p>
     <img :src="store.cropImage" alt="" />
   </div>
   <canvas-modal ref="canvasModalRef"></canvas-modal>
@@ -241,6 +282,48 @@ const openCanvasModal = (options) => {
 <style lang="scss" scoped>
 @import url(@/assets/cropper.css);
 
+.ant-radio-button-wrapper {
+  padding: 0.5em;
+  // line-height: 1;
+  // font-size: 13px;
+  width: auto;
+  height: auto;
+
+  :deep(span:nth-child(2)) {
+    display: flex;
+    padding: 0.1em;
+  }
+}
+
+.ant-radio-button {
+  font-size: 1.5em;
+}
+
+.docs-buttons {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.cropper-crop {
+  opacity: 0.3;
+}
+.ant-btn-group {
+  border-radius: 25em;
+  overflow: hidden;
+}
+
+.ant-btn-group .ant-btn-icon-only {
+  font-size: 1.1em;
+}
+
+.ant-btn-icon-only {
+  // padding: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: auto;
+}
 .docs-preview {
   // display: flex;
   // flex-direction: row;

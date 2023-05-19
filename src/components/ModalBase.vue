@@ -36,7 +36,7 @@ const internalOpen = ref(false);
 <template>
   <Transition name="modal">
     <div v-if="store.open" class="modal-mask">
-      <div ref="dialog" class="modal-container">
+      <div ref="dialog" class="modal-container container">
         <div class="modal-header">
           <h3>{{ title }}</h3>
           <button class="icon" @click="store.open = false">
@@ -52,6 +52,39 @@ const internalOpen = ref(false);
 </template>
 
 <style lang="scss" scoped>
+.container {
+  width: 100%;
+  max-width: 500px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
 .icon {
   position: absolute;
   right: 0;
@@ -73,7 +106,7 @@ const internalOpen = ref(false);
 
 .modal-container {
   overflow-x: scroll;
-  max-width: 1200px;
+  max-width: 545px;
   margin: auto;
   padding: 1.5em;
   background-color: #fff;

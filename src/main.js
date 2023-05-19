@@ -18,7 +18,8 @@ import {
   Dropdown,
   Menu,
   Checkbox,
-  Upload
+  Upload,
+  Slider
 } from 'ant-design-vue'
 
 
@@ -40,5 +41,6 @@ app
   .use(Menu)
   .use(Checkbox)
   .use(Upload)
+  .use(Slider)
 
 app.mount('#app')
