@@ -61,7 +61,7 @@ const internalOpen = ref(false);
 
 .modal-mask {
   position: fixed;
-  z-index: 9998;
+  z-index: 998;
   top: 0;
   left: 0;
   width: 100%;
@@ -72,6 +72,7 @@ const internalOpen = ref(false);
 }
 
 .modal-container {
+  overflow-x: scroll;
   max-width: 1200px;
   margin: auto;
   padding: 1.5em;

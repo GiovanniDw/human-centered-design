@@ -3,8 +3,9 @@ import { defineStore } from 'pinia'
 import { set, useObjectUrl } from '@vueuse/core';
 import avatar from "@/assets/avatar.png";
 
-const imgUrl = new URL('@/assets/avatar.png', import.meta.url).href
+
 export const useEditorStore = defineStore('editor', () => {
+  const url = ref(new URL('@/assets/avatar.png', import.meta.url).href)
   const file = shallowRef();
   const cropper = ref({
     rotate: 0,
@@ -13,7 +14,7 @@ export const useEditorStore = defineStore('editor', () => {
       vertical: false,
     }
   });
-  const url = useObjectUrl(file);
+  // const url = useObjectUrl(file);
   const cropImage = ref(null);
   const cropperCoords = ref({
     width: 0,
@@ -27,14 +28,31 @@ export const useEditorStore = defineStore('editor', () => {
     vertical: 0
   });
   // const doubleCount = computed(() => count.value * 2);
+  // const onFileChange = (event) => {
+  //   try {
+  //     file.value = event.target.files[0];
+  //     console.log(event.target);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
   const onFileChange = (event) => {
-    try {
-      file.value = event.target.files[0];
-      console.log(event.target);
-    } catch (error) {
-      console.log(error);
+    const files = event.target.files
+  
+    if (files && files.length) {
+      const file = files[0]
+      if (/^image\/\w+/.test(file.type)) {
+        url.value = URL.createObjectURL(file)
+        file.value.value = null
+      } else {
+        window.alert('Please choose an image file.')
+      }
     }
-  };
+  }
+
+
+
   function crop() {
     const { coordinates, canvas, image } = cropper.value.getResult();
     // You able to do different manipulations at a canvas

@@ -13,7 +13,10 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@ballcat/vue-cropper": "^1.0.5",
     "@vueuse/core": "^10.1.2",
+    "ant-design-vue": "^3.2.20",
+    "cropperjs": "^1.5.13",
     "pinia": "^2.1.1",
     "sass": "^1.62.1",
     "vue": "^3.3.2",
