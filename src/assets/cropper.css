@@ -102,7 +102,6 @@
   height: 40px;
 }
 
-
 .docs-toggles > .ant-btn,
 .docs-toggles > .ant-radio-group,
 .docs-toggles > .dropdown {
@@ -118,12 +117,13 @@
 .btn-group-crop > .ant-btn-primary {
   background: #28a745;
   border-color: #28a745;
- }
+}
 .btn-group-crop > .ant-btn-primary:hover {
   background: #42bf5b;
   border-color: #42bf5b;
 }
-.btn-group-crop .ant-btn-primary:hover, .btn-group-crop .ant-btn-primary:focus {
+.btn-group-crop .ant-btn-primary:hover,
+.btn-group-crop .ant-btn-primary:focus {
   color: #fff;
   background: #42bf5b;
   border-color: #42bf5b;
@@ -135,10 +135,10 @@
   border-left-color: #8ec59a !important;
   border-right-color: #8ec59a !important;
 }
-.btn-group-crop .ant-btn-primary:last-child:not(:first-child), .btn-group-crop .ant-btn-primary + .ant-btn-primary {
+.btn-group-crop .ant-btn-primary:last-child:not(:first-child),
+.btn-group-crop .ant-btn-primary + .ant-btn-primary {
   border-left-color: #8ec59a !important;
 }
-
 
 .btn-secondary.ant-btn-primary {
   background: #6c757d;
@@ -148,7 +148,8 @@
   background: #9397a1;
   border-color: #9397a1;
 }
-.btn-secondary.ant-btn-primary:hover, .btn-secondary.ant-btn-primary:focus {
+.btn-secondary.ant-btn-primary:hover,
+.btn-secondary.ant-btn-primary:focus {
   color: #fff;
   background: #9397a1;
   border-color: #9397a1;

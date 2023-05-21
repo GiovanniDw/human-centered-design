@@ -7,7 +7,6 @@ import router from './router'
 import 'ant-design-vue/dist/antd.css'
 import './assets/main.css'
 
-
 import {
   Button,
   Row,
@@ -22,13 +21,10 @@ import {
   Slider
 } from 'ant-design-vue'
 
-
-
 const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
-
 
 app
   .use(Button)

@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, ref, onMounted, computed } from 'vue'
+import { reactive, ref, onMounted, computed } from "vue";
 import {
   useNow,
   useDateFormat,
@@ -11,135 +11,155 @@ import {
   objectEntries,
   useArrayFindIndex,
   useArrayFind,
-  useArrayFilter
-} from '@vueuse/core'
-import BaseIcon from '@/components/icons/BaseIcon.vue'
-import ImgIcon from '@/components/icons/ImgIcon.vue'
-import ChatMessage from '@/components/ChatMessage.vue'
+  useArrayFilter,
+} from "@vueuse/core";
+import BaseIcon from "@/components/icons/BaseIcon.vue";
+import ImgIcon from "@/components/icons/ImgIcon.vue";
+import ChatMessage from "@/components/ChatMessage.vue";
 
 defineProps({
-  headerHeight: String
-})
+  headerHeight: String,
+});
 
-const messages = ref([])
-const message = ref('')
-const chatContainer = ref(null)
-const chatEmote = ref('')
-const chatImgEmote = ref()
-const chatImgEmoteColor = ref('')
-const footerRef = ref(null)
+const messages = ref([]);
+const message = ref("");
+const chatContainer = ref(null);
+const chatEmote = ref("");
+const chatImgEmote = ref();
+const chatImgEmoteColor = ref("");
+const footerRef = ref(null);
 // const footerHeight = ref(0)
 const chatEmoteList = ref([
-  { name: 'sentiment_satisfied', color: 'var(--color-succes)' },
-  { name: 'mood_bad', color: 'var(--color-error)' }
-])
+  { name: "sentiment_satisfied", color: "var(--color-succes)" },
+  { name: "mood_bad", color: "var(--color-error)" },
+]);
 
-import facepalm from '@/assets/icons/facepalm.png'
-import groupTask from '@/assets/icons/group-task.png'
-import ignore from '@/assets/icons/ignore.png'
-import learning from '@/assets/icons/learning.png'
-import mad from '@/assets/icons/mad.png'
-import silence from '@/assets/icons/silence.png'
-import strike from '@/assets/icons/strike.png'
-import suppression from '@/assets/icons/suppression.png'
-import tiedHands from '@/assets/icons/tied-hands.png'
-import yesOrNo from '@/assets/icons/yes-or-no.png'
+import facepalm from "@/assets/icons/facepalm.png";
+import groupTask from "@/assets/icons/group-task.png";
+import ignore from "@/assets/icons/ignore.png";
+import learning from "@/assets/icons/learning.png";
+import mad from "@/assets/icons/mad.png";
+import silence from "@/assets/icons/silence.png";
+import strike from "@/assets/icons/strike.png";
+import suppression from "@/assets/icons/suppression.png";
+import tiedHands from "@/assets/icons/tied-hands.png";
+import yesOrNo from "@/assets/icons/yes-or-no.png";
 
 const emote = {
-  happy: 'green',
-  neutral: 'orange',
-  mad: 'red'
-}
+  happy: "green",
+  neutral: "orange",
+  mad: "red",
+};
 
 const chatImgEmoteList = ref([
-  { name: 'group task', src: groupTask, color: emote.happy },
-  { name: 'strike', src: strike, color: emote.happy },
-  { name: 'ignore', src: ignore, color: emote.neutral },
-  { name: 'learning', src: learning, color: emote.neutral },
-  { name: 'yesOrNo', src: yesOrNo, color: emote.neutral },
-  { name: 'mad', src: mad, color: emote.mad },
-  { name: 'silence', src: silence, color: emote.mad },
-  { name: 'suppression', src: suppression, color: emote.mad },
-  { name: 'tiedHands', src: tiedHands, color: emote.mad },
-  { name: 'facepalm', src: facepalm, color: emote.mad }
-])
+  { name: "group task", src: groupTask, color: emote.happy },
+  { name: "strike", src: strike, color: emote.happy },
+  { name: "ignore", src: ignore, color: emote.neutral },
+  { name: "learning", src: learning, color: emote.neutral },
+  { name: "yesOrNo", src: yesOrNo, color: emote.neutral },
+  { name: "mad", src: mad, color: emote.mad },
+  { name: "silence", src: silence, color: emote.mad },
+  { name: "suppression", src: suppression, color: emote.mad },
+  { name: "tiedHands", src: tiedHands, color: emote.mad },
+  { name: "facepalm", src: facepalm, color: emote.mad },
+]);
 
-const chatEmotesOpen = ref(false)
-const toggleChatEmotesOpen = useToggle(chatEmotesOpen)
+const chatEmotesOpen = ref(false);
+const toggleChatEmotesOpen = useToggle(chatEmotesOpen);
 
-chatEmote.value ? (chatEmotesOpen.value = false) : ''
+chatEmote.value ? (chatEmotesOpen.value = false) : "";
 
-const date = new Date()
-const timeAgo = useTimeAgo(date)
+const date = new Date();
+const timeAgo = useTimeAgo(date);
 
 const sendBotMessage = () => {
   const botMessage = {
-    msg: 'hi how are you?',
-    icon: '',
+    msg: "hi how are you?",
+    icon: "",
     me: false,
-    time: timeAgo
-  }
+    time: timeAgo,
+  };
 
-  messages.value.push(botMessage)
-}
+  messages.value.push(botMessage);
+};
 
-sendBotMessage()
+sendBotMessage();
 
-const getFooterHeight = useElementSize(footerRef).height
+const getFooterHeight = useElementSize(footerRef).height;
 
 const setFooterHeight = reactive({
-  height: getFooterHeight.value
-})
+  height: getFooterHeight.value,
+});
 
 // console.log(getFooterHeight.height)
 
 const onSubmit = () => {
-  const { x, y } = useScroll(chatContainer)
+  const { x, y } = useScroll(chatContainer);
 
-  let index = chatImgEmote.value
-  const item = useArrayFind(chatImgEmoteList, (val) => val.src == index)
+  let index = chatImgEmote.value;
+  const item = useArrayFind(chatImgEmoteList, (val) => val.src == index);
   // const result = useArrayFindIndex(chatImgEmoteList, i => i % index === i)
 
-  const result = useArrayFilter(chatImgEmoteList, (i) => i.name == index)
-  console.log(index)
-  console.log(result.value[0])
-  console.log(chatImgEmote.value)
-  const formatted = useDateFormat(date, 'YYYY-MM-DD HH:mm:ss')
-  const newMessage = new Object({
-    msg: message.value,
-    icon: result.value[0].name,
-    src: result.value[0].src,
-    color: result.value[0].color,
-    me: true,
-    time: timeAgo
-  })
-  messages.value.push(newMessage)
-  chatEmotesOpen.value = false
-  chatImgEmote.value = ''
-  chatEmote.value = ''
-  message.value = ''
+  const result = useArrayFilter(chatImgEmoteList, (i) => i.name == index);
+  console.log(index);
+  console.log(result.value[0]);
+  console.log(chatImgEmote.value);
+  const formatted = useDateFormat(date, "YYYY-MM-DD HH:mm:ss");
+
+  // let icon = ref(null);
+
+  // if (result.value[0].name) {
+  //   icon.value = result.value[0].name;
+  // }
+
+  if (!result.value[0]) {
+    const newMessageText = new Object({
+      msg: message.value,
+      me: true,
+      time: timeAgo,
+    });
+
+    messages.value.push(newMessageText);
+  } else {
+    const newMessage = new Object({
+      msg: message.value,
+      src: result.value[0].src,
+      color: result.value[0].color,
+      me: true,
+      time: timeAgo,
+    });
+
+    messages.value.push(newMessage);
+  }
+
+  chatEmotesOpen.value = false;
+  chatImgEmote.value = "";
+  chatEmote.value = "";
+  message.value = "";
 
   setTimeout(() => {
-    sendBotMessage()
-  }, 500)
-}
+    sendBotMessage();
+  }, 500);
+};
 
-console.log(chatImgEmote)
+console.log(chatImgEmote);
 
 // chatImgEmote
 
 const onMessage = (el, done) => {
-  chatContainer.value.scrollTop = chatContainer.value.scrollHeight
-}
+  chatContainer.value.scrollTop = chatContainer.value.scrollHeight;
+};
 
 // onMounted(() => {
 //   footerHeight.value = footerRef.value.offsetHeight + 'px'
 // })
 
 const footerHeight = computed(() => {
-  const { height } = useElementBounding(footerRef)
-  return height.value + 'px'
-})
+  const { height } = useElementBounding(footerRef);
+  return height.value + "px";
+});
+
+console.log(footerHeight.value);
 </script>
 
 <template>
@@ -149,7 +169,6 @@ const footerHeight = computed(() => {
         <template v-for="(item, index) in messages" :key="index">
           <ChatMessage
             :msg="item.msg"
-            :icon="item.icon"
             :src="item.src"
             :me="item.me"
             :color="item.color"
@@ -161,7 +180,7 @@ const footerHeight = computed(() => {
   </main>
 
   <footer ref="footerRef">
-    <form class="chat-form" @submit.prevent.self="onSubmit">
+    <form class="chat-form" @submit.prevent="onSubmit">
       <div class="icon-input-group">
         <button
           class="icon-btn icon-select-button"
@@ -373,7 +392,7 @@ button {
     z-index: 9999999;
   }
 
-  input[type='radio'] {
+  input[type="radio"] {
     width: 1.5em;
     height: 1.5em;
     display: inline-block;
@@ -433,7 +452,7 @@ footer {
   bottom: env(safe-area-inset-bottom);
   // padding: .5em;
   // min-height: 0;
-  position: sticky;
+  position: fixed;
   left: 0;
 
   // border-top: 1px solid var(--color-background-mute);
@@ -452,8 +471,8 @@ footer {
   }
 }
 
-input[type='text'].message-input {
-  // display: block;
+input[type="text"].message-input {
+  display: block;
   // border-radius: 3em;
   position: relative;
   // border: 2px solid var(--color-background-mute);
@@ -461,13 +480,13 @@ input[type='text'].message-input {
 
   border: 0;
   background-color: var(--color-background-soft);
-  // height: 100%;
+  height: 100%;
   width: 100%;
   // font-size: 1em;
   // border: 0;
   color: var(--color-text);
-  padding: 1em;
-  min-height: 2em;
+  // padding: 1em;
+  min-height: 100%;
 
   // height: auto;
 

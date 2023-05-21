@@ -26,7 +26,11 @@ const store = useGlobalStore();
   <header ref="headerRef">
     <div class="profile">
       <button class="profile" @click="store.open = true">
-        <ImgIcon :src="avatar" class="avatar" name="person" />
+        <ImgIcon v-if="store.avatar" :src="store.avatar" class="avatar" name="person" />
+        <!-- <span v-if="store.avatar">
+          <img v-if="store.avatar" :src="store.avatar" alt="" />
+        </span> -->
+        <BaseIcon v-else :src="store.avatar" class="avatar" name="person" />
       </button>
       <RouterLink to="/">
         <span>Jhon Doe</span>
@@ -52,6 +56,10 @@ main {
 </style>
 
 <style lang="scss" scoped>
+img {
+  height: 100%;
+  width: 100%;
+}
 header {
   display: flex;
   justify-content: space-between;
@@ -73,6 +81,7 @@ header {
     background-color: transparent;
   }
   .profile {
+    max-height: 2em;
     display: flex;
     align-items: center;
     align-content: center;

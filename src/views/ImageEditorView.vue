@@ -1,32 +1,32 @@
 <script setup>
-import BaseIcon from "@/components/icons/BaseIcon.vue";
-import { Cropper, Preview } from "vue-advanced-cropper";
-import { ref, shallowRef } from "vue";
-import { useImage, useObjectUrl } from "@vueuse/core";
-import "vue-advanced-cropper/dist/style.css";
-import "vue-advanced-cropper/dist/theme.classic.css";
+import BaseIcon from '@/components/icons/BaseIcon.vue'
+import { Cropper, Preview } from 'vue-advanced-cropper'
+import { ref, shallowRef } from 'vue'
+import { useImage, useObjectUrl } from '@vueuse/core'
+import 'vue-advanced-cropper/dist/style.css'
+import 'vue-advanced-cropper/dist/theme.classic.css'
 
-import { useEditorStore } from "@/stores/editor";
-const imageInput = ref(null);
-const imageFile = ref(null);
-const imagePreview = ref("");
-const file = shallowRef();
-const url = useObjectUrl(file);
+import { useEditorStore } from '@/stores/editor'
+const imageInput = ref(null)
+const imageFile = ref(null)
+const imagePreview = ref('')
+const file = shallowRef()
+const url = useObjectUrl(file)
 
-const { isLoading } = useImage({ src: url });
+const { isLoading } = useImage({ src: url })
 
-const store = useEditorStore();
-const { doRotate, doFlip, flip, rotate, cropper } = store;
+const store = useEditorStore()
+const { doRotate, doFlip, flip, rotate, cropper } = store
 const image = ref({
   src: null,
-  type: null,
-});
+  type: null
+})
 
 const onImgSubmit = () => {
-  let img = imageInput.value;
-};
+  let img = imageInput.value
+}
 
-console.log(imageInput.value);
+console.log(imageInput.value)
 
 // const handleImageUpload = (event) => {
 //   event.preventDefault();
@@ -77,7 +77,7 @@ console.log(imageInput.value);
           minHeight: 0,
           minWidth: 0,
           maxHeight: 800,
-          maxWidth: 800,
+          maxWidth: 800
         }"
         :stencil-props="{
           handlers: {
@@ -88,8 +88,8 @@ console.log(imageInput.value);
             westSouth: true,
             south: true,
             eastSouth: true,
-            east: true,
-          },
+            east: true
+          }
         }"
       />
       <Preview
@@ -157,7 +157,7 @@ main {
   // width: 100%;
 }
 
-input[type="image"] {
+input[type='image'] {
   border: 1px solid red;
 }
 

@@ -1,20 +1,20 @@
 <script setup>
-import { ref, useAttrs, onMounted, watchEffect } from "vue";
-import BaseIcon from "@/components/icons/BaseIcon.vue";
+import { ref, useAttrs, onMounted, watchEffect } from 'vue'
+import BaseIcon from '@/components/icons/BaseIcon.vue'
 const props = defineProps({
   inline: Boolean,
-  title: String,
-});
+  title: String
+})
 // defineEmits(["close"]);
 
-import { useGlobalStore } from "@/stores/global.js";
-const store = useGlobalStore();
+import { useGlobalStore } from '@/stores/global.js'
+const store = useGlobalStore()
 
-const { openCloseModal, open } = store;
+const { openCloseModal, open } = store
 
 // const attrs = useAttrs();
-const dialog = ref(null);
-const internalOpen = ref(false);
+const dialog = ref(null)
+const internalOpen = ref(false)
 // function openCloseDialog() {
 //   if (!dialog?.value) return;
 //   if (open.value) dialog.value.showModal();
@@ -147,7 +147,7 @@ const internalOpen = ref(false);
 
 .modal-enter-from .modal-container,
 .modal-leave-to .modal-container {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
+  -webkit-transform: scale(0.8);
+  transform: scale(0.8);
 }
 </style>

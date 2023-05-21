@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import ChatView from '../views/ChatView.vue'
 // import {socket, state} from '@/socket.js';
 
-import HomeView from '../views/HomeView.vue';
+import HomeView from '../views/HomeView.vue'
 import ImageEditorView from '@/views/ImageEditorView.vue'
 // import ChatViewFirst from '../views/ChatViewFirst.vue';
 const router = createRouter({

@@ -1,11 +1,14 @@
-import { ref, computed, shallowRef } from 'vue'
+import { ref, computed, shallowRef, reactive } from 'vue'
 import { defineStore } from 'pinia'
 import { set, useObjectUrl } from '@vueuse/core';
 import avatar from "@/assets/avatar.png";
 
 
 export const useEditorStore = defineStore('editor', () => {
-  const url = ref(new URL('@/assets/avatar.png', import.meta.url).href)
+  // const url = ref(new URL('@/assets/avatar.png', import.meta.url).href)
+  const url = ref()
+  const newUrl = ref()
+  const newfile = shallowRef();
   const file = shallowRef();
   const cropper = ref({
     rotate: 0,
@@ -27,6 +30,10 @@ export const useEditorStore = defineStore('editor', () => {
     horizontal: 0,
     vertical: 0
   });
+
+
+  const avatar = ref();
+
   // const doubleCount = computed(() => count.value * 2);
   // const onFileChange = (event) => {
   //   try {
@@ -37,6 +44,24 @@ export const useEditorStore = defineStore('editor', () => {
   //   }
   // };
 
+  const saveAvatar = (img) => {
+    // console.log(img)
+    // newUrl.value = URL.createObjectURL(newfile)
+    // newfile.value = null
+
+
+    // const url = useObjectUrl(img);
+    // set(avatar, url)
+
+
+    set(avatar, img.toDataURL())
+
+
+    console.log(avatar.value)
+
+}
+
+
   const onFileChange = (event) => {
     const files = event.target.files
   
@@ -44,7 +69,7 @@ export const useEditorStore = defineStore('editor', () => {
       const file = files[0]
       if (/^image\/\w+/.test(file.type)) {
         url.value = URL.createObjectURL(file)
-        file.value.value = null
+        file.value = null
       } else {
         window.alert('Please choose an image file.')
       }
@@ -126,5 +151,5 @@ export const useEditorStore = defineStore('editor', () => {
     // set(cropper, {rotate: angle})
   }
   
-  return { cropImage, url, file, onChange, onFileChange, crop, cropperCoords, cropper, rotate, flip,doRotate, doFlip,defaultTransforms }
+  return { cropImage, url, file, onChange, onFileChange, crop, cropperCoords, cropper, rotate, flip,doRotate, doFlip,defaultTransforms, saveAvatar }
 })

@@ -1,10 +1,15 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
-import { useToggle } from '@vueuse/core';
+import { useToggle } from '@vueuse/core'
 
 export const useGlobalStore = defineStore('global', () => {
-  
-  const open = ref(false);
+  const avatar = ref()
+  const open = ref(false)
+
+  function setAvatar(baseURL) {
+return avatar.value = baseURL    
+  }
+
   function openCloseModal() {
     console.log(open.value)
     if (open.value == false) {
@@ -13,5 +18,5 @@ export const useGlobalStore = defineStore('global', () => {
       open.value = true
     }
   }
-  return { open, openCloseModal }
+  return { open, openCloseModal, avatar, setAvatar }
 })

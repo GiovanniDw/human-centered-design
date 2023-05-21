@@ -9,8 +9,8 @@
 defineProps({
   name: String,
   src: String,
-  color: String
-})
+  color: String,
+});
 
 // import facepalm from '@/assets/icons/facepalm.png';
 // import groupTask from '@/assets/icons/group-task.png';
@@ -41,10 +41,10 @@ span {
 }
 
 img {
-  max-width: 2em;
-  max-height: 2em;
-  height: 1.5em;
-  width: 1.5em;
+  max-width: 1.5em;
+  max-height: 1.5em;
+  // height: 1.5em;
+  // width: 1.5em;
 }
 .icon {
   // font-size: inherit;

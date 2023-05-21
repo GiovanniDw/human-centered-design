@@ -49,7 +49,7 @@ const cropperOptions = reactive({
   restore: true,
   checkCrossOrigin: true,
   checkOrientation: true,
-  modal: false,
+  modal: true,
   guides: true,
   center: true,
   highlight: true,
@@ -110,7 +110,7 @@ const openCanvasModal = (options) => {
 </script>
 
 <template>
-  <div class="image-input">
+  <div v-show="!store.url" class="image-input img-container">
     <div class="input-group">
       <label for="image">
         <BaseIcon name="image" />
@@ -119,6 +119,7 @@ const openCanvasModal = (options) => {
     </div>
   </div>
   <VueCropper
+    v-show="store.url"
     ref="vueCropperRef"
     class="img-container"
     :src="store.url"
@@ -126,11 +127,11 @@ const openCanvasModal = (options) => {
     v-bind="cropperOptions"
     @crop="onCrop"
     :imageStyle="{
-      maxWidth: 500,
+      borderRadius: '100%',
     }"
   />
   <div>
-    <div class="controlls">
+    <div class="controlls" v-show="store.url">
       <!-- <button @click="store.crop">Crop</button>
       <button @click="store.doRotate('+', 90)" value="90">Rotate +</button>
       <button @click="store.doRotate('-', 90)" value="90">Rotate -</button>
@@ -139,7 +140,9 @@ const openCanvasModal = (options) => {
 
       <div class="docs-buttons">
         <a-radio-group v-model:value="cropperOptions.aspectRatio" button-style="solid">
-          <a-radio-button :value="0"><BaseIcon name="crop_free" /></a-radio-button>
+          <a-radio-button :value="0">
+            <BaseIcon class="icon" name="crop_free" />
+          </a-radio-button>
           <a-radio-button :value="16 / 9">
             <BaseIcon name="crop_16_9" />
           </a-radio-button>
@@ -153,134 +156,130 @@ const openCanvasModal = (options) => {
             <BaseIcon name="crop_portrait" />
           </a-radio-button>
         </a-radio-group>
-
-        <a-button
-          type="primary"
-          @click="openCanvasModal({ maxWidth: 500, maxHeight: 500 })"
-        >
-          Get Cropped Canvas
-        </a-button>
       </div>
-      <div>
-        <div class="docs-buttons">
-          <a-button-group>
-            <a-button type="primary" @click="vueCropperRef?.setDragMode('move')">
-              <template #icon> <drag-outlined /> </template>
-            </a-button>
-            <a-button type="primary" @click="vueCropperRef?.setDragMode('crop')">
-              <template #icon> <gateway-outlined /> </template>
-            </a-button>
-          </a-button-group>
-          <a-button-group class="button-group">
-            <a-button type="primary" @click="vueCropperRef?.zoom(0.1)">
-              <template #icon>
-                <BaseIcon name="photo_size_select_large" />
-              </template>
-            </a-button>
-            <a-button type="primary" @click="vueCropperRef?.zoom(-0.1)">
-              <template #icon>
-                <BaseIcon name="photo_size_select_small" />
-              </template>
-            </a-button>
-          </a-button-group>
-          <a-button-group>
-            <a-button type="primary" @click="vueCropperRef?.move(-10, 0)">
-              <template #icon>
-                <BaseIcon name="arrow_back" />
-              </template>
-            </a-button>
-            <a-button type="primary" @click="vueCropperRef?.move(10, 0)">
-              <template #icon>
-                <BaseIcon name="arrow_forward" />
-              </template>
-            </a-button>
-            <a-button type="primary" @click="vueCropperRef?.move(0, -10)">
-              <template #icon>
-                <BaseIcon name="arrow_upward" />
-              </template>
-            </a-button>
-            <a-button type="primary" @click="vueCropperRef?.move(0, 10)">
-              <template #icon>
-                <BaseIcon name="arrow_downward" />
-              </template>
-            </a-button>
-          </a-button-group>
-          <a-button-group>
-            <a-button type="primary" @click="vueCropperRef?.rotate(-45)">
-              <template #icon>
-                <BaseIcon name="rotate_left" />
-              </template>
-            </a-button>
 
-            <a-button type="primary" @click="vueCropperRef?.rotate(45)">
-              <template #icon>
-                <BaseIcon name="rotate_right" />
-              </template>
-            </a-button>
-          </a-button-group>
+      <div class="docs-buttons">
+        <a-button-group>
+          <a-button type="default" @click="vueCropperRef?.setDragMode('move')">
+            <template #icon>
+              <BaseIcon name="drag_pan" />
+            </template>
+          </a-button>
+          <a-button type="default" @click="vueCropperRef?.setDragMode('crop')">
+            <template #icon>
+              <BaseIcon name="resize" />
+            </template>
+          </a-button>
+        </a-button-group>
+        <a-button-group>
+          <a-button type="default" @click="vueCropperRef?.zoom(0.1)">
+            <template #icon>
+              <BaseIcon name="zoom_in" />
+            </template>
+          </a-button>
+          <a-button type="default" @click="vueCropperRef?.zoom(-0.1)">
+            <template #icon>
+              <BaseIcon name="zoom_out" />
+            </template>
+          </a-button>
+        </a-button-group>
+        <a-button-group>
+          <a-button type="default" @click="vueCropperRef?.move(-10, 0)">
+            <template #icon>
+              <BaseIcon name="arrow_back" />
+            </template>
+          </a-button>
+          <a-button type="default" @click="vueCropperRef?.move(10, 0)">
+            <template #icon>
+              <BaseIcon name="arrow_forward" />
+            </template>
+          </a-button>
+          <a-button type="default" @click="vueCropperRef?.move(0, -10)">
+            <template #icon>
+              <BaseIcon name="arrow_upward" />
+            </template>
+          </a-button>
+          <a-button type="default" @click="vueCropperRef?.move(0, 10)">
+            <template #icon>
+              <BaseIcon name="arrow_downward" />
+            </template>
+          </a-button>
+        </a-button-group>
+        <a-button-group>
+          <a-button type="default" @click="vueCropperRef?.rotate(-45)">
+            <template #icon>
+              <BaseIcon name="rotate_left" />
+            </template>
+          </a-button>
 
-          <a-button-group>
-            <a-button type="primary" @click="vueCropperRef?.flipX()">
-              <template #icon> <BaseIcon name="swap_horiz" /> </template>
-            </a-button>
-            <a-button type="primary" @click="vueCropperRef?.flipY()">
-              <template #icon> <BaseIcon name="swap_vert" /> </template>
-            </a-button>
-          </a-button-group>
-          <a-button-group>
-            <a-button type="primary" @click="vueCropperRef?.crop()">
-              <template #icon> <check-outlined /> </template>
-            </a-button>
-            <a-button type="primary" @click="vueCropperRef?.clear()">
-              <template #icon>
-                <BaseIcon name="restart_alt" />
-              </template>
-            </a-button>
-          </a-button-group>
-          <a-button-group>
-            <a-button type="primary" @click="vueCropperRef?.disable()">
-              <template #icon> <lock-outlined /> </template>
-            </a-button>
-            <a-button type="primary" @click="vueCropperRef?.enable()">
-              <template #icon> <unlock-outlined /> </template>
-            </a-button>
-          </a-button-group>
-          <a-button-group>
-            <a-button type="primary" @click="vueCropperRef?.reset()">
-              <template #icon> <sync-outlined /> </template>
-            </a-button>
-            <input
-              ref="fileInputRef"
-              type="file"
-              accept="image/*"
-              style="display: none"
-              @change="onFileSelect"
-            />
-            <a-button type="primary" @click="fileInputRef.click()">
-              <template #icon> <upload-outlined /> </template>
-            </a-button>
-            <a-button type="primary" @click="vueCropperRef?.destroy()">
-              <template #icon> <poweroff-outlined /> </template>
-            </a-button>
-          </a-button-group>
-        </div>
+          <a-button type="default" @click="vueCropperRef?.rotate(45)">
+            <template #icon>
+              <BaseIcon name="rotate_right" />
+            </template>
+          </a-button>
+        </a-button-group>
+
+        <a-button-group>
+          <a-button type="default" @click="vueCropperRef?.flipX()">
+            <template #icon> <BaseIcon name="swap_horiz" /> </template>
+          </a-button>
+          <a-button type="default" @click="vueCropperRef?.flipY()">
+            <template #icon> <BaseIcon name="swap_vert" /> </template>
+          </a-button>
+        </a-button-group>
+        <a-button-group>
+          <a-button type="default" @click="vueCropperRef?.crop()">
+            <template #icon>
+              <check-outlined />
+            </template>
+          </a-button>
+          <a-button type="default" @click="vueCropperRef?.clear()">
+            <template #icon>
+              <BaseIcon name="restart_alt" />
+            </template>
+          </a-button>
+        </a-button-group>
+        <a-button-group>
+          <a-button type="primary" @click="vueCropperRef?.reset()">
+            <template #icon> <sync-outlined /> </template>
+          </a-button>
+          <input
+            ref="fileInputRef"
+            type="file"
+            accept="image/*"
+            style="display: none"
+            @change="onFileSelect"
+          />
+          <a-button type="default" @click="fileInputRef.click()">
+            <template #icon>
+              <upload-outlined />
+            </template>
+          </a-button>
+          <a-button type="default" @click="vueCropperRef?.destroy()">
+            <template #icon> <poweroff-outlined /> </template>
+          </a-button>
+        </a-button-group>
       </div>
     </div>
-    <a-slider
-      width="100%"
-      :v-modal="rotateValue"
-      @onUpdate="vueCropperRef.rotate(rotateValue)"
-      :min="1"
-      :max="360"
-    />
-    <p>{{ rotateValue }}</p>
-    <img :src="store.cropImage" alt="" />
+    <a-button
+      type="primary"
+      @click="openCanvasModal({ maxWidth: 1000, maxHeight: 1000 })"
+    >
+      Review Edit
+    </a-button>
   </div>
   <canvas-modal ref="canvasModalRef"></canvas-modal>
 </template>
 
 <style lang="scss" scoped>
 @import url(@/assets/cropper.css);
+
+.img-container {
+  align-self: center;
+  overflow: hidden;
+  width: 500px;
+  height: 500px;
+}
 
 .ant-radio-button-wrapper {
   padding: 0.5em;
@@ -292,6 +291,7 @@ const openCanvasModal = (options) => {
   :deep(span:nth-child(2)) {
     display: flex;
     padding: 0.1em;
+    font-size: 1.5em;
   }
 }
 
@@ -302,7 +302,11 @@ const openCanvasModal = (options) => {
 .docs-buttons {
   display: flex;
   align-items: center;
+  justify-content: center;
+  gap: 0.5em;
   flex-wrap: wrap;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 .cropper-crop {
   opacity: 0.3;
@@ -310,6 +314,11 @@ const openCanvasModal = (options) => {
 .ant-btn-group {
   border-radius: 25em;
   overflow: hidden;
+  border: 1px solid transparent;
+  border-color: var(--color-border);
+}
+.ant-btn {
+  border-color: var(--color-border);
 }
 
 .ant-btn-group .ant-btn-icon-only {

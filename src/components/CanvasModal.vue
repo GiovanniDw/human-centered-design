@@ -1,5 +1,10 @@
 <script setup>
 import { ref, nextTick } from "vue";
+import { useGlobalStore } from "@/stores/global.js";
+import { set } from "@vueuse/core";
+const store = useGlobalStore();
+
+const { setAvatar } = store;
 
 const visible = ref(false);
 
@@ -8,11 +13,22 @@ const canvasDom = ref();
 const containerRef = ref();
 
 const downloadImage = () => {
+  console.log(canvasDom.value.toDataURL());
+  const img = canvasDom.value.toDataURL();
+  const { canvas } = canvasDom.value;
+
+  setAvatar(img);
+
+  // store.ava = { avatar: canvasDom.value.toDataURL() };
+
   canvasDom.value.toBlob((blob) => {
     const a = document.createElement("a");
+
     a.href = URL.createObjectURL(blob);
+
     a.download = "cropped";
     // start download
+
     a.click();
   });
 };
@@ -39,7 +55,7 @@ defineExpose({
     v-model:visible="visible"
     title="Cropped"
     cancel-text="Cancel"
-    okText="Download"
+    okText="Done"
     :width="500"
     @ok="downloadImage"
   >
