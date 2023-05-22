@@ -31,10 +31,8 @@ const store = useGlobalStore();
           <img v-if="store.avatar" :src="store.avatar" alt="" />
         </span> -->
         <BaseIcon v-else :src="store.avatar" class="avatar" name="person" />
-      </button>
-      <RouterLink to="/">
         <span>Jhon Doe</span>
-      </RouterLink>
+      </button>
     </div>
     <Teleport to="body">
       <ModalBase title="Edit Avatar">
@@ -42,11 +40,17 @@ const store = useGlobalStore();
       </ModalBase>
     </Teleport>
     <nav>
+      <RouterLink to="/image-editor">Image Editor</RouterLink>
       <RouterLink to="/second-chat">Final Chat</RouterLink>
       <RouterLink to="/first-chat">First Chat</RouterLink>
     </nav>
   </header>
-  <RouterView />
+
+  <RouterView v-slot="{ Component }">
+    <KeepAlive>
+      <component :is="Component"></component>
+    </KeepAlive>
+  </RouterView>
 </template>
 
 <style>
@@ -81,12 +85,15 @@ header {
     background-color: transparent;
   }
   .profile {
+    font-weight: bold;
+    color: var(--color-text-invert);
     max-height: 2em;
     display: flex;
     align-items: center;
     align-content: center;
     gap: 0.5em;
-    font-size: var(--icon-size);
+    font-size: 1em;
+    // font-size: var(--icon-size);
     // padding: .5em;
 
     a {

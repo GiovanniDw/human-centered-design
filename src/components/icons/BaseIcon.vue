@@ -53,8 +53,8 @@ span.icon:hover {
 // }
 
 .material-symbols-rounded {
+  // font-size: 1em;
   font-size: inherit;
-  font-size: 1em;
 
   font-variation-settings: "FILL" v-bind(FILL), "wght" v-bind(wght), "GRAD" v-bind(GRAD),
     "opsz" v-bind(opsz);

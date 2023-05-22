@@ -281,8 +281,13 @@ const openCanvasModal = (options) => {
   <canvas-modal ref="canvasModalRef"></canvas-modal>
 </template>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 @import url(@/assets/cropper.css);
+
+.icon .docs-buttons:deep(.material-symbols-rounded) {
+  font-size: 1.25em;
+}
+
 .docs-buttons.last {
   padding-bottom: 0;
   margin-bottom: 0;
@@ -310,7 +315,7 @@ const openCanvasModal = (options) => {
   flex-direction: column;
   justify-content: center;
   gap: 1em;
-  position: absolute;
+  // position: absolute;
   top: 0;
   left: 0;
   // position: absolute;
@@ -328,8 +333,13 @@ const openCanvasModal = (options) => {
 }
 
 .img-container {
+  display: grid;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
   align-self: center;
   overflow: hidden;
+  // height: 100%;
   max-width: 500px;
   max-height: 500px;
 }
@@ -347,8 +357,11 @@ input[type="image"] {
 }
 
 .input-group {
+  justify-self: stretch;
+  align-self: stretch;
   display: flex;
   height: 100%;
+  width: 100%;
   align-items: center;
   justify-content: center;
   border: 1px solid var(--color-background-mute);

@@ -52,6 +52,13 @@ const internalOpen = ref(false);
 </template>
 
 <style lang="scss" scoped>
+.modal-body {
+  margin: 20px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .container {
   width: 100%;
   max-width: 500px;
@@ -119,12 +126,6 @@ const internalOpen = ref(false);
 .modal-header h3 {
   margin-top: 0;
   color: #42b983;
-}
-
-.modal-body {
-  margin: 20px 0 0 0;
-  display: flex;
-  flex-direction: column;
 }
 
 .modal-default-button {
