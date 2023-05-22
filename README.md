@@ -1,8 +1,6 @@
 # Her - Human Centered Design
 
-![Image.png](Her%20-%20Human%20Centered%20Design.assets/Image.png)
-<img width="1731" alt="Image" src="https://github.com/GiovanniDw/human-centered-design/assets/10939082/665a3d73-232c-47fc-87c6-96d43c84b25f">
-
+![App Screen SHot](https://github.com/GiovanniDw/human-centered-design/assets/10939082/665a3d73-232c-47fc-87c6-96d43c84b25f)
 # Assignment
 
 **Uploaden en inzoomen van foto's**
@@ -33,34 +31,29 @@ Uploaden en inzoomen van Afbeeldingen
 
 Probleem
 
-Hoe kan ik het process van een afbeelding uploaden & bewerken eenvoudiger maken voor Eric?
-
 Oplossing
 
-het bewerken van geuploade afbeeldingen makkelijker maken door simpele interacties.
-
 ## Probleemdefinitie
+
+Hoe kan ik het process van een afbeelding uploaden & bewerken eenvoudiger maken voor Eric?
 
 ## Oplossing
 
 Schrijf hier hoe jij het probleem hebt opgelost, hoe werkt jouw prototype?
 
+Het bewerken van geuploade afbeeldingen makkelijker maken door simpele interacties.
+
 Ik heb het probleem opgelost door het bewerken van afbeeldingen makkelijker te maken voor Erik, omdat Erik moeite heeft met de fijne motoriek heb ik
 
 ## Prototype
 
-[](https://giovannidw.github.io/human-centered-design/)
-
----
+- [https://giovannidw.github.io/human-centered-design/](https://giovannidw.github.io/human-centered-design/)
 
 # Documentatie van de Design Principles, User Needs, Testen en Testresultaten.
 
 ### The Exclusive Design Principles
 
-1. [Study situation](https://exclusive-design.vasilis.nl/principles/study-situation/)
-
-   In order to become specialist designers for all kinds of people with all kinds of disabilities we have to study different, individual situations.
-
+1. [`Study situation`](https://exclusive-design.vasilis.nl/principles/study-situation/) In order to become specialist designers for all kinds of people with all kinds of disabilities we have to study different, individual situations.
 2. [Ignore conventions](https://exclusive-design.vasilis.nl/principles/ignore-conventions/) The current conventions are designed by, and thus for, designers. Not all of these conventions work for non-designers. If we want to include non-designers, and especially people with disabilities, we should reconsider these conventions, after we studied their situations.
 3. [Prioritise identity](https://exclusive-design.vasilis.nl/principles/prioritise-identity/)
 
@@ -92,14 +85,14 @@ Onzin kan een handig hulpmiddel zijn om het onbekende te onderzoeken.
 
 #### Who is the user I’m designing for?
 
-> ``` Pete Haller (32, single) works for the corporate communication department of Daimler Chrysler.
+> > Pete Haller (32, single) works for the corporate communication department of Daimler Chrysler.
 He loved it in the beginning, but his job is no longer a challenge for him.
 However, he is scared to reorient because his status and financial security is very important to him.
 Pete is very organized and can’t stand chaos or inconvenience.
 In his free time, he reads a lot of books.
 Books help him to keep his mind busy and especially professional literature offers him the challenges he misses at work.
 The last couple of weeks, Pete has really been into medical books.
-Because of a family history, he is especially interested in kidney diseases. ```
+Because of a family history, he is especially interested in kidney diseases.
 
 > Eric is een veelgebruiker van social media, SMS, Bellen, Signal, Teams, Twitter of Instagram, die man is *unstopable*, hij is een rijdend sociaal medium ... Interfaces van deze apps zijn over het algemeen bruikbaar maar niet specifiek ontworpen voor mensen met een motorische beperking. Eric heeft niet de beschikking over de fijne motoriek.
 
