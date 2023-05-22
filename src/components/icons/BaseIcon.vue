@@ -14,15 +14,15 @@ defineProps({
   },
   wght: {
     type: [Number, String],
-    default: 500,
+    default: 400,
   },
   GRAD: {
     type: Number,
-    default: 0,
+    default: 200,
   },
   opsz: {
     type: Number,
-    default: 24,
+    default: 48,
   },
 });
 </script>

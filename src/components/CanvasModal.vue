@@ -52,10 +52,11 @@ defineExpose({
 
 <template>
   <a-modal
+    class="modal-container"
     v-model:visible="visible"
-    title="Cropped"
+    title="Your Cropped Image"
     cancel-text="Cancel"
-    okText="Done"
+    okText="Save & Download"
     :width="500"
     @ok="downloadImage"
   >
@@ -63,7 +64,22 @@ defineExpose({
   </a-modal>
 </template>
 
-<style>
+<style lang="scss">
+.ant-modal-content {
+  overflow: hidden;
+}
+
+.ant-modal {
+  .ant-modal-content,
+  .modal-container,
+  .ant-modal-content {
+    border-radius: 1em;
+    overflow: hidden;
+  }
+}
+// .modal-container {
+//   border-radius: 1em;
+// }
 .canvas-container > canvas {
   max-width: 100%;
 }

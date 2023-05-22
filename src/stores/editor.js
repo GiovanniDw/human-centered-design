@@ -61,10 +61,13 @@ export const useEditorStore = defineStore('editor', () => {
 
 }
 
+  const onFileCancel = (e) => {
+    url.value = false
+    file.value = null
+}
 
   const onFileChange = (event) => {
     const files = event.target.files
-  
     if (files && files.length) {
       const file = files[0]
       if (/^image\/\w+/.test(file.type)) {
@@ -151,5 +154,5 @@ export const useEditorStore = defineStore('editor', () => {
     // set(cropper, {rotate: angle})
   }
   
-  return { cropImage, url, file, onChange, onFileChange, crop, cropperCoords, cropper, rotate, flip,doRotate, doFlip,defaultTransforms, saveAvatar }
+  return { cropImage, url, file, onChange, onFileChange, crop, cropperCoords, cropper, rotate, flip,doRotate, doFlip,defaultTransforms, saveAvatar, onFileCancel }
 })

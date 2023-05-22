@@ -20,7 +20,7 @@ const url = useObjectUrl(file);
 const { isLoading } = useImage({ src: url });
 
 const store = useEditorStore();
-const { doRotate, doFlip, flip, rotate, cropper } = store;
+const { doRotate, doFlip, flip, rotate, cropper, onFileCancel, onFileChange } = store;
 const image = ref({
   src: null,
   type: null,
@@ -110,12 +110,20 @@ const openCanvasModal = (options) => {
 </script>
 
 <template>
-  <div v-show="!store.url" class="image-input img-container">
+  <div v-show="!store.url" class="image-input-container img-container">
     <div class="input-group">
-      <label for="image">
-        <BaseIcon name="image" />
+      <label class="image-input-label" for="image">
+        <BaseIcon class="icon" name="move_to_inbox" />
+        <span>Click or Drag an Image to Start Editing</span>
       </label>
-      <input type="file" id="image" accept="image/*" @change="store.onFileChange" />
+      <input
+        class="image-input"
+        type="file"
+        id="image"
+        name="image"
+        accept="image/*"
+        @change="store.onFileChange"
+      />
     </div>
   </div>
   <VueCropper
@@ -228,45 +236,47 @@ const openCanvasModal = (options) => {
           </a-button>
         </a-button-group>
         <a-button-group>
-          <a-button type="default" @click="vueCropperRef?.crop()">
+          <!-- <a-button type="default" @click="vueCropperRef?.crop()">
             <template #icon>
               <check-outlined />
             </template>
-          </a-button>
+          </a-button> -->
           <a-button type="default" @click="vueCropperRef?.clear()">
             <template #icon>
               <BaseIcon name="restart_alt" />
             </template>
           </a-button>
         </a-button-group>
-        <a-button-group>
+        <!-- <a-button-group>
           <a-button type="primary" @click="vueCropperRef?.reset()">
-            <template #icon> <sync-outlined /> </template>
+            <template #icon>
+              <BaseIcon name="restart_alt" />
+            </template>
           </a-button>
           <input
             ref="fileInputRef"
             type="file"
             accept="image/*"
             style="display: none"
-            @change="onFileSelect"
+            @change="store.onFileChange"
           />
           <a-button type="default" @click="fileInputRef.click()">
             <template #icon>
-              <upload-outlined />
+              <BaseIcon name="upload" />
             </template>
           </a-button>
-          <a-button type="default" @click="vueCropperRef?.destroy()">
-            <template #icon> <poweroff-outlined /> </template>
-          </a-button>
-        </a-button-group>
+        </a-button-group> -->
+      </div>
+      <div class="docs-buttons">
+        <a-button type="secondary" @click="onFileCancel"> Cancel </a-button>
+        <a-button
+          type="primary"
+          @click="openCanvasModal({ maxWidth: 1000, maxHeight: 1000 })"
+        >
+          Review Edit
+        </a-button>
       </div>
     </div>
-    <a-button
-      type="primary"
-      @click="openCanvasModal({ maxWidth: 1000, maxHeight: 1000 })"
-    >
-      Review Edit
-    </a-button>
   </div>
   <canvas-modal ref="canvasModalRef"></canvas-modal>
 </template>
@@ -274,11 +284,77 @@ const openCanvasModal = (options) => {
 <style lang="scss" scoped>
 @import url(@/assets/cropper.css);
 
+.image-input-group {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  // justify-content: stretch;
+  // align-items: stretch;
+  // flex-direction: row;
+  // display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.image-input {
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+}
+.image-input-label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1em;
+  position: absolute;
+  top: 0;
+  left: 0;
+  // position: absolute;
+  height: 100%;
+  width: 100%;
+
+  .icon {
+    font-size: 3em;
+  }
+}
+
+.image-input {
+  width: 100%;
+  // display: none;
+}
+
 .img-container {
   align-self: center;
   overflow: hidden;
-  width: 500px;
-  height: 500px;
+  max-width: 500px;
+  max-height: 500px;
+}
+
+input[type="image"] {
+  border: 1px solid red;
+}
+
+// .image-input {
+//   display: flex;
+//   flex-direction: row;
+// }
+
+#image-form {
+}
+
+.input-group {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-background-mute);
+  // padding: 5em;
+
+  label {
+    // width: 100%;
+    // height: 100%;
+  }
 }
 
 .ant-radio-button-wrapper {
@@ -316,6 +392,13 @@ const openCanvasModal = (options) => {
   overflow: hidden;
   border: 1px solid transparent;
   border-color: var(--color-border);
+
+  > .ant-btn:first-child {
+    border-radius: 25em 0 0 25em !important;
+  }
+  > .ant-btn:last-child {
+    border-radius: 0 25em 25em 0 !important;
+  }
 }
 .ant-btn {
   border-color: var(--color-border);
@@ -386,30 +469,5 @@ main {
 #image {
   // padding: 1em;
   // width: 100%;
-}
-
-input[type="image"] {
-  border: 1px solid red;
-}
-
-.image-input {
-  display: flex;
-  flex-direction: row;
-}
-
-#image-form {
-}
-
-.input-group {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--color-background-mute);
-  // padding: 5em;
-
-  label {
-    // width: 100%;
-    // height: 100%;
-  }
 }
 </style>
