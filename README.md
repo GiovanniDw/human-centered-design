@@ -1,6 +1,30 @@
-# Her - Human Centered Design
+Her - Human Centered Design
 
 ![App Screen SHot](https://github.com/GiovanniDw/human-centered-design/assets/10939082/665a3d73-232c-47fc-87c6-96d43c84b25f)
+
+<b>Contents</b>
+
+- [Assignment](#assignment)
+    - [Onderzoeksvraag](#onderzoeksvraag)
+    - [Rubic](#rubic)
+  - [Probleemdefinitie](#probleemdefinitie)
+  - [Oplossing](#oplossing)
+  - [Prototype](#prototype)
+- [Documentatie van de Design Principles, User Needs, Testen en Testresultaten.](#documentatie-van-de-design-principles-user-needs-testen-en-testresultaten)
+    - [The Exclusive Design Principles](#the-exclusive-design-principles)
+      - [study situation](#study-situation)
+      - [ignore conventions](#ignore-conventions)
+      - [prioritise identity](#prioritise-identity)
+      - [add nonsense](#add-nonsense)
+    - [User Scenario](#user-scenario)
+      - [Who is the user I’m designing for?](#who-is-the-user-im-designing-for)
+      - [What does this user want?](#what-does-this-user-want)
+      - [How is this user going to achieve his goals?](#how-is-this-user-going-to-achieve-his-goals)
+      - [Why does this user come to my site?](#why-does-this-user-come-to-my-site)
+    - [Tests](#tests)
+      - [Results](#results)
+
+
 # Assignment
 
 **Uploaden en inzoomen van foto's**
@@ -9,29 +33,21 @@ Voor het plaatsen van foto's in een app of website zijn verschillende handelinge
 
 ### Onderzoeksvraag
 
-> Uploaden en inzoomen van foto’s
+> Uploaden en inzoomen van foto’s  
+         > ```Hoe kan ik het process van een afbeelding uploaden & bewerken eenvoudiger maken voor Eric?```
 
-> Hoe kan ik het process van een afbeelding uploaden & bewerken eenvoudiger maken voor Eric?
-
-> ~~Hoe werkt een afbeelding uploaden & bewerken voor Eric?~~
+~~Hoe werkt een afbeelding uploaden & bewerken voor Eric?~~
 
 ### Rubic
 
 |                   | **Criteria**                                                                                                                                                                                                                                                                                                        |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Readme            | In de beschrijving van het project staat de opdracht uitgelegd, is het probleem duidelijk beschreven en hoe het probleem is opgelost.                                                                                                                                                                               |
 | Design Principles | Student laat zien hoe de Exclusive Design Principles zijn toegepast in het ontwerp. De principes study situation, prioritise identity, ignore conventions en add nonsense zijn goed uitgelegd. Aan de hand van de principes wordt duidelijk gemaakt hoe deze hebben bijgedragen aan het verbeteren van het ontwerp. |
 | User Needs        | Er is een user scenario geschreven dat aansluit bij de identiteit van de test persoon. Er is een duidelijk en volledig user scenario geschreven dat antwoord geeft op de 4 w-vragen: Who? What? How? en Why?                                                                                                        |
 | Testen            | Er is elke week getest. Er is een verslaglegging van de tests gedaan waarin de test-opzet wordt behandeld en er is een duidelijke conclusie beschreven met do's en dont's over hoe je goed kan testen.                                                                                                              |
 | Testresultaten    | Aan de hand van de tests wordt duidelijk gemaakt hoe deze hebben bijgedragen aan het verbeteren van het ontwerp of hoe dit een volgende keer beter of anders kan.                                                                                                                                                   |
 
-Opdracht Uitleg
-
-Uploaden en inzoomen van Afbeeldingen
-
-Probleem
-
-Oplossing
 
 ## Probleemdefinitie
 
@@ -47,7 +63,7 @@ Ik heb het probleem opgelost door het bewerken van afbeeldingen makkelijker te m
 
 ## Prototype
 
-- [https://giovannidw.github.io/human-centered-design/](https://giovannidw.github.io/human-centered-design/)
+- [`https://giovannidw.github.io/human-centered-design/`](https://giovannidw.github.io/human-centered-design/)
 
 # Documentatie van de Design Principles, User Needs, Testen en Testresultaten.
 
@@ -84,50 +100,23 @@ Onzin kan een handig hulpmiddel zijn om het onbekende te onderzoeken.
 [How User Scenarios Help To Improve Your UX](https://www.getfeedback.com/resources/ux/how-user-scenarios-help-to-improve-your-ux/)
 
 #### Who is the user I’m designing for?
-
-> > Pete Haller (32, single) works for the corporate communication department of Daimler Chrysler.
-He loved it in the beginning, but his job is no longer a challenge for him.
-However, he is scared to reorient because his status and financial security is very important to him.
-Pete is very organized and can’t stand chaos or inconvenience.
-In his free time, he reads a lot of books.
-Books help him to keep his mind busy and especially professional literature offers him the challenges he misses at work.
-The last couple of weeks, Pete has really been into medical books.
-Because of a family history, he is especially interested in kidney diseases.
-
-> Eric is een veelgebruiker van social media, SMS, Bellen, Signal, Teams, Twitter of Instagram, die man is *unstopable*, hij is een rijdend sociaal medium ... Interfaces van deze apps zijn over het algemeen bruikbaar maar niet specifiek ontworpen voor mensen met een motorische beperking. Eric heeft niet de beschikking over de fijne motoriek.
+>Eric is een veelgebruiker van social media, SMS, Bellen, Signal, Teams, Twitter of Instagram, die man is *unstopable*, hij is een rijdend sociaal medium ... Interfaces van deze apps zijn over het algemeen bruikbaar maar niet specifiek ontworpen voor mensen met een motorische beperking. Eric heeft niet de beschikking over de fijne motoriek.
 
 #### What does this user want?
-
-> > Pete is looking for an easy to read book for non-professionals that explains different kidney deceases including symptoms, methods of treatment, and possible long-term effects.
-He does not want to spend more than $30 and if available he prefers used books to save money.
-He visits [Amazon.com](http://Amazon.com) to find the right book.
-
-Eric is opzoek naar een makkelijke manier om geüploade afbeeldingen te bewerken
-
+> Eric is opzoek naar een makkelijke manier om geüploade afbeeldingen te bewerken
 - Afbeelding Uploaden
 - Afbeelding Bewerken
-   - Inzoomen
-   - Croppen
-   - Draaien
-   - Frame
+     - Inzoomen
+     - Croppen
+     - Draaien
+     - Frame
 
 #### How is this user going to achieve his goals?
 
-> > Pete is handy with computers but since working with them all day long, he wants to use them as little as possible when he is at home.
-Convenience is very important for Pete.
-He knows exactly what he wants and he expects to quickly find several options that he can choose from.
-He does not expect the payment process to be difficult or the shipping to take longer than two days.
-Pete likes to read expert statements and short recessions from other users to find out which book is the right one.
-
-Om Eric te helpen zijn doelen te bereiken heb ik besloten om het bewerken van geuploade afbeeldingen makkelijker te maken voor Eric.
+> Om Eric te helpen zijn doelen te bereiken heb ik besloten om het bewerken van geuploade afbeeldingen makkelijker te maken voor Eric.
 
 #### Why does this user come to my site?
-
-> > Pete used to go to his local book dealer. He enjoys walking through town after work and pick up his purchases. 
-Lately a friend has recommended [amazon.com](http://amazon.com) to him. 
-His friend was very enthusiastic about all the features Amazon offers and above all how convenient it works. This made Pete curious and he wants to try it out. 
-He also sees the advantages of going home directly after work, and even if he likes going to the book store, ordering his books from his desk at home is way more convenient. 
-He wants to try and order his next book online.
+> 
 
 ### Tests
 
