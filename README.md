@@ -1,6 +1,7 @@
 # Her - Human Centered Design
 
 ![Image.png](Her%20-%20Human%20Centered%20Design.assets/Image.png)
+<img width="1731" alt="Image" src="https://github.com/GiovanniDw/human-centered-design/assets/10939082/665a3d73-232c-47fc-87c6-96d43c84b25f">
 
 # Assignment
 
@@ -91,14 +92,14 @@ Onzin kan een handig hulpmiddel zijn om het onbekende te onderzoeken.
 
 #### Who is the user I’m designing for?
 
-> > Pete Haller (32, single) works for the corporate communication department of Daimler Chrysler.
+> ``` Pete Haller (32, single) works for the corporate communication department of Daimler Chrysler.
 He loved it in the beginning, but his job is no longer a challenge for him.
 However, he is scared to reorient because his status and financial security is very important to him.
 Pete is very organized and can’t stand chaos or inconvenience.
 In his free time, he reads a lot of books.
 Books help him to keep his mind busy and especially professional literature offers him the challenges he misses at work.
 The last couple of weeks, Pete has really been into medical books.
-Because of a family history, he is especially interested in kidney diseases.
+Because of a family history, he is especially interested in kidney diseases. ```
 
 > Eric is een veelgebruiker van social media, SMS, Bellen, Signal, Teams, Twitter of Instagram, die man is *unstopable*, hij is een rijdend sociaal medium ... Interfaces van deze apps zijn over het algemeen bruikbaar maar niet specifiek ontworpen voor mensen met een motorische beperking. Eric heeft niet de beschikking over de fijne motoriek.
 
