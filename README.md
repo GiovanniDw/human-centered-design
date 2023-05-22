@@ -1,24 +1,22 @@
-# 􀓤 Human Centered Design
+# Her - Human Centered Design
 
-# Course Info
+![Image.png](Her%20-%20Human%20Centered%20Design.assets/Image.png)
 
-[GitHub - cmda-minor-web/human-centered-design-2223](https://github.com/cmda-minor-web/human-centered-design-2223)
+# Assignment
 
-## Assignment
+**Uploaden en inzoomen van foto's**
 
-### Ontwerpen met en voor echte mensen
+Voor het plaatsen van foto's in een app of website zijn verschillende handelingen nodig. Eric redt zich hier wel mee, hij kan foto's uploaden en plaatsen, maar de interactie zou voor hem wat makkelijker kunnen. Ontwerp voor Eric een functionaliteit waarmee hij eenvoudig een foto kan uploaden en bewerken, zoals inzoomem, een uitsnede maken, draaien en/of in een kader plaatsen.
 
-Voor dit vak krijg je een ontwerp-opdracht die je gaat maken voor 1 mens. Een echt mens. Je moet je ontwerp elke week testen. Door te testen en te itereren ga je je ontwerp verbeteren. Uiteindelijk heb je een ontwerp dat exclusief gemaakt is voor 1 persoon. Een *exclusive design* ... Wie is deze persoon dan voor wie je dit gaat maken? Wat vindt deze persoon leuk of juist niet? Hoe bedient deze persoon een computer?
+### Onderzoeksvraag
 
-### Leerdoelen
+> Uploaden en inzoomen van foto’s
 
-- *Leren hoe je (design) principles in een ontwerp kan toepassen.*
-- *User needs begrijpen en gebruiken in je ontwerp.*
-- *Leren hoe je moet testen en de resultaten gebruiken voor het verbeteren van je ontwerp.*
+> Hoe kan ik het process van een afbeelding uploaden & bewerken eenvoudiger maken voor Eric?
+
+> ~~Hoe werkt een afbeelding uploaden & bewerken voor Eric?~~
 
 ### Rubic
-
-De opdracht wordt beoordeeld aan de hand van onderstaande rubriek. Je moet slagen voor het criterium (middenkolom) om het vak te halen.
 
 |                   | **Criteria**                                                                                                                                                                                                                                                                                                        |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -28,70 +26,120 @@ De opdracht wordt beoordeeld aan de hand van onderstaande rubriek. Je moet slage
 | Testen            | Er is elke week getest. Er is een verslaglegging van de tests gedaan waarin de test-opzet wordt behandeld en er is een duidelijke conclusie beschreven met do's en dont's over hoe je goed kan testen.                                                                                                              |
 | Testresultaten    | Aan de hand van de tests wordt duidelijk gemaakt hoe deze hebben bijgedragen aan het verbeteren van het ontwerp of hoe dit een volgende keer beter of anders kan.                                                                                                                                                   |
 
-# Intro en aannames testen
+Opdracht Uitleg
 
-## Body Language in Chat Apps
+Uploaden en inzoomen van Afbeeldingen
 
-### Eric Groot Kormelink
+Probleem
 
-Eric is een ontwerper. Hij organiseert regelmatig design-avonden waar hij probeert om mensen met beperkingen samen te brengen met ontwerpers en makers. Eric zelf zit in een electrische rolstoel. Hij heeft niet de beschikking over de fijne motoriek.
+Hoe kan ik het process van een afbeelding uploaden & bewerken eenvoudiger maken voor Eric?
 
-→ Body language in chat apps
+Oplossing
 
-### What is Body Language?
+het bewerken van geuploade afbeeldingen makkelijker maken door simpele interacties.
 
-![Image.tiff](https://res.craft.do/user/full/cae612a9-77ef-3048-2175-f49f7e7d201d/doc/7E74C264-F1C6-4179-AEDD-E57C4EBDF1AF/1FB71E82-8560-4AF4-9DA8-1CC0AC170DFD_2/TZcsZEfBjfupQWRLOhYLAG0E0EnULNIUWoAx7dyAOkAz/Image.tiff)
+## Probleemdefinitie
 
-## The Exclusive Design Principles
+## Oplossing
 
-During my research at the Master Design I have worked with four exclusive design principles. With some good will we can organise all chapters in this thesis into these four principles.
+Schrijf hier hoe jij het probleem hebt opgelost, hoe werkt jouw prototype?
 
-1. [Study situation](https://exclusive-design.vasilis.nl/principles/study-situation/)  
-   In order to become specialist designers for all kinds of people with all kinds of disabilities we have to study different, individual situations.  
-2. [Ignore conventions](https://exclusive-design.vasilis.nl/principles/ignore-conventions/)  
-The current conventions are designed by, and thus for, designers. Not all of these conventions work for non-designers. If we want to include non-designers, and especially people with disabilities, we should reconsider these conventions, after we studied their situations.
-3. [Prioritise identity](https://exclusive-design.vasilis.nl/principles/prioritise-identity/)  
-   Including excluded people into our design process, by seeing them as co-designers rather than study objects, can help in coming up with new, and relevant, conventions.  
-4. [Add nonsense](https://exclusive-design.vasilis.nl/principles/add-nonsense/)  
+Ik heb het probleem opgelost door het bewerken van afbeeldingen makkelijker te maken voor Erik, omdat Erik moeite heeft met de fijne motoriek heb ik
+
+## Prototype
+
+[](https://giovannidw.github.io/human-centered-design/)
+
+---
+
+# Documentatie van de Design Principles, User Needs, Testen en Testresultaten.
+
+### The Exclusive Design Principles
+
+1. [Study situation](https://exclusive-design.vasilis.nl/principles/study-situation/)
+
+   In order to become specialist designers for all kinds of people with all kinds of disabilities we have to study different, individual situations.
+
+2. [Ignore conventions](https://exclusive-design.vasilis.nl/principles/ignore-conventions/) The current conventions are designed by, and thus for, designers. Not all of these conventions work for non-designers. If we want to include non-designers, and especially people with disabilities, we should reconsider these conventions, after we studied their situations.
+3. [Prioritise identity](https://exclusive-design.vasilis.nl/principles/prioritise-identity/)
+
+   Including excluded people into our design process, by seeing them as co-designers rather than study objects, can help in coming up with new, and relevant, conventions.
+
+4. [Add nonsense](https://exclusive-design.vasilis.nl/principles/add-nonsense/)
+
    Designing for people with disabilities is in large part uncharted territory. Nonsense can be a useful tool to investigate the unkown. And it’s fun.
 
+#### study situation
 
+> Door de situatie van een individu te bestuderen een passend ontwerp bedenken.
 
-> **Dont listen to customers**  
+#### ignore conventions
 
-→ Jacob nielson
+De standaarden die vaak gebruikt worden zijn niet altijd voor iedereen toegankelijk.
 
+#### prioritise identity
 
+Door een gebruiker mee te nemen in het ontwerp process word en deze te zien als co-designer in plaats van studie object, kan helpen met het bedenken van nieuwe, relevante ideeën & oplossingen.
 
-# Prototypen en testen
+#### add nonsense
 
-- [10 Usability Lessons from Steve Krug’s Don't Make Me Think | UX Booth](https://www.uxbooth.com/articles/10-usability-lessons-from-steve-krugs-dont-make-me-think/)
-- [Design for Both Needs and Wants: Applying Anderson's User Experience Hierarchy of Needs](https://thevisualcommunicationguy.com/2018/11/08/design-for-both-needs-and-wants-applying-andersons-user-experience-hierarchy-of-needs/)
+Onzin kan een handig hulpmiddel zijn om het onbekende te onderzoeken.
 
-## Testen
-
-Donals Rumsfeld
-
-- As we know, there are known knowns; there are things we know
-- We also know there are known unknowns thiat is to say we know there are some things we do not know
-- But there are also unknown unknowns; the ones we don’t know we don’t know
-
-#### Tips
-
-- Think aloud protocol → Encourage the participantso Think out loud
-- You can’t answer their questions, anwser questions with a question
-- Stay Neutral → you don’t want to influence the participants.
-
-Define →  Ideate → Prototype →  Test
-
-- Schrijf een test plan
-- Wat wil je te weten komen?
-- Bedenk van te voren welke taken je test -persoon moet uitvoeren
-- Evalueer je test
-
-[Checklist for Moderating a Usability Test](https://www.nngroup.com/articles/usability-checklist/)
-
-# Prototypen, presenteren en reflecteren
+### User Scenario
 
 [How User Scenarios Help To Improve Your UX](https://www.getfeedback.com/resources/ux/how-user-scenarios-help-to-improve-your-ux/)
+
+#### Who is the user I’m designing for?
+
+> > Pete Haller (32, single) works for the corporate communication department of Daimler Chrysler.
+He loved it in the beginning, but his job is no longer a challenge for him.
+However, he is scared to reorient because his status and financial security is very important to him.
+Pete is very organized and can’t stand chaos or inconvenience.
+In his free time, he reads a lot of books.
+Books help him to keep his mind busy and especially professional literature offers him the challenges he misses at work.
+The last couple of weeks, Pete has really been into medical books.
+Because of a family history, he is especially interested in kidney diseases.
+
+> Eric is een veelgebruiker van social media, SMS, Bellen, Signal, Teams, Twitter of Instagram, die man is *unstopable*, hij is een rijdend sociaal medium ... Interfaces van deze apps zijn over het algemeen bruikbaar maar niet specifiek ontworpen voor mensen met een motorische beperking. Eric heeft niet de beschikking over de fijne motoriek.
+
+#### What does this user want?
+
+> > Pete is looking for an easy to read book for non-professionals that explains different kidney deceases including symptoms, methods of treatment, and possible long-term effects.
+He does not want to spend more than $30 and if available he prefers used books to save money.
+He visits [Amazon.com](http://Amazon.com) to find the right book.
+
+Eric is opzoek naar een makkelijke manier om geüploade afbeeldingen te bewerken
+
+- Afbeelding Uploaden
+- Afbeelding Bewerken
+   - Inzoomen
+   - Croppen
+   - Draaien
+   - Frame
+
+#### How is this user going to achieve his goals?
+
+> > Pete is handy with computers but since working with them all day long, he wants to use them as little as possible when he is at home.
+Convenience is very important for Pete.
+He knows exactly what he wants and he expects to quickly find several options that he can choose from.
+He does not expect the payment process to be difficult or the shipping to take longer than two days.
+Pete likes to read expert statements and short recessions from other users to find out which book is the right one.
+
+Om Eric te helpen zijn doelen te bereiken heb ik besloten om het bewerken van geuploade afbeeldingen makkelijker te maken voor Eric.
+
+#### Why does this user come to my site?
+
+> > Pete used to go to his local book dealer. He enjoys walking through town after work and pick up his purchases. 
+Lately a friend has recommended [amazon.com](http://amazon.com) to him. 
+His friend was very enthusiastic about all the features Amazon offers and above all how convenient it works. This made Pete curious and he wants to try it out. 
+He also sees the advantages of going home directly after work, and even if he likes going to the book store, ordering his books from his desk at home is way more convenient. 
+He wants to try and order his next book online.
+
+### Tests
+
+- **Voor welk apparaat moeten we de oplossing bedenken?**
+
+> Hij gebruikt onderweg en op school veel zijn mobiel, maar thuis prefereert hij zijn desktop.
+
+#### Results
 
