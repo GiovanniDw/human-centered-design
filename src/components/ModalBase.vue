@@ -122,7 +122,9 @@ const internalOpen = ref(false);
 }
 
 .modal-body {
-  margin: 20px 0;
+  margin: 20px 0 0 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .modal-default-button {

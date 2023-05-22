@@ -267,7 +267,7 @@ const openCanvasModal = (options) => {
           </a-button>
         </a-button-group> -->
       </div>
-      <div class="docs-buttons">
+      <div class="docs-buttons last">
         <a-button type="secondary" @click="onFileCancel"> Cancel </a-button>
         <a-button
           type="primary"
@@ -283,7 +283,10 @@ const openCanvasModal = (options) => {
 
 <style lang="scss" scoped>
 @import url(@/assets/cropper.css);
-
+.docs-buttons.last {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
 .image-input-group {
   display: flex;
   width: 100%;
