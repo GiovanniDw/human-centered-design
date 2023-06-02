@@ -17,6 +17,17 @@ import BaseIcon from "@/components/icons/BaseIcon.vue";
 import ImgIcon from "@/components/icons/ImgIcon.vue";
 import ChatMessage from "@/components/ChatMessage.vue";
 
+import facepalm from "@/assets/icons/facepalm.png";
+import groupTask from "@/assets/icons/group-task.png";
+import ignore from "@/assets/icons/ignore.png";
+import learning from "@/assets/icons/learning.png";
+import mad from "@/assets/icons/mad.png";
+import silence from "@/assets/icons/silence.png";
+import strike from "@/assets/icons/strike.png";
+import suppression from "@/assets/icons/suppression.png";
+import tiedHands from "@/assets/icons/tied-hands.png";
+import yesOrNo from "@/assets/icons/yes-or-no.png";
+
 defineProps({
   headerHeight: String,
 });
@@ -33,17 +44,6 @@ const chatEmoteList = ref([
   { name: "sentiment_satisfied", color: "var(--color-succes)" },
   { name: "mood_bad", color: "var(--color-error)" },
 ]);
-
-import facepalm from "@/assets/icons/facepalm.png";
-import groupTask from "@/assets/icons/group-task.png";
-import ignore from "@/assets/icons/ignore.png";
-import learning from "@/assets/icons/learning.png";
-import mad from "@/assets/icons/mad.png";
-import silence from "@/assets/icons/silence.png";
-import strike from "@/assets/icons/strike.png";
-import suppression from "@/assets/icons/suppression.png";
-import tiedHands from "@/assets/icons/tied-hands.png";
-import yesOrNo from "@/assets/icons/yes-or-no.png";
 
 const emote = {
   happy: "green",
@@ -195,7 +195,7 @@ console.log(footerHeight.value);
             <label
               class="icon-select"
               v-for="(item, index) in chatImgEmoteList"
-              :key="item.name"
+              :key="index"
               :for="item.name"
             >
               <input
