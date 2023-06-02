@@ -27,7 +27,6 @@ const image = ref({
 })
 
 
-
 const convertNumber = (num) => (num != null ? Math.round(num) : undefined)
 
 const onImgSubmit = () => {

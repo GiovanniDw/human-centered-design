@@ -1,6 +1,6 @@
 {
   "index.css": {
-    "file": "assets/index-12ee12b5.css",
+    "file": "assets/index-05c4d105.css",
     "src": "index.css"
   },
   "index.html": {
@@ -17,9 +17,9 @@
       "assets/yes-or-no-1809161a.png"
     ],
     "css": [
-      "assets/index-12ee12b5.css"
+      "assets/index-05c4d105.css"
     ],
-    "file": "assets/index-0672d78c.js",
+    "file": "assets/index-11960372.js",
     "isEntry": true,
     "src": "index.html"
   },

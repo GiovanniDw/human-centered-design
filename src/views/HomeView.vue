@@ -1,7 +1,7 @@
 <script setup>
 // import Chat from '../components/Chat.vue';
 
-import ImageFirstEditor from '@/components/ImageFirstEditor.vue.js'
+import ImageFirstEditor from '@/components/ImageFirstEditor.vue'
 </script>
 
 <template>
