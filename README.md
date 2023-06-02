@@ -1,6 +1,6 @@
 # Her - Human Centered Design
 
-![Image.png](Her%20-%20Human%20Centered%20Design.assets/Image.png)
+![App Screen SHot](https://github.com/GiovanniDw/human-centered-design/assets/10939082/665a3d73-232c-47fc-87c6-96d43c84b25f)
 
 # Assignment
 
