@@ -4,7 +4,8 @@ import ChatView from '@/views/ChatView.vue'
 
 import HomeView from '@/views/HomeView.vue'
 import ImageEditorView from '@/views/ImageEditorView.vue'
-import ChatViewFirst from '@/views/ChatViewFirst.vue';
+import ChatViewFirst from '@/views/ChatViewFirst.vue'
+import HomeViewFinal from '@/views/HomeViewFinal.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -18,6 +19,12 @@ const router = createRouter({
       path: '/image-editor',
       name: 'Image Editor',
       component: HomeView,
+      props: true
+    },
+    {
+      path: '/final-image-editor',
+      name: 'Image Editor Final',
+      component: HomeViewFinal,
       props: true
     },
     {

@@ -9,8 +9,8 @@
 defineProps({
   name: String,
   src: String,
-  color: String,
-});
+  color: String
+})
 
 // import facepalm from '@/assets/icons/facepalm.png';
 // import groupTask from '@/assets/icons/group-task.png';

@@ -18,7 +18,8 @@ import {
   Menu,
   Checkbox,
   Upload,
-  Slider
+  Slider,
+  Card
 } from 'ant-design-vue'
 
 const app = createApp(App)
@@ -38,5 +39,6 @@ app
   .use(Checkbox)
   .use(Upload)
   .use(Slider)
+  .use(Card)
 
 app.mount('#app')

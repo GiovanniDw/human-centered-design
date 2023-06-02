@@ -7,7 +7,7 @@ export const useGlobalStore = defineStore('global', () => {
   const open = ref(false)
 
   function setAvatar(baseURL) {
-return avatar.value = baseURL    
+    return (avatar.value = baseURL)
   }
 
   function openCloseModal() {

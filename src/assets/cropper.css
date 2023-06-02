@@ -99,7 +99,7 @@
 }
 
 .docs-buttons .ant-btn {
-  height: 40px;
+  min-height: 40px;
 }
 
 .docs-toggles > .ant-btn,
@@ -110,7 +110,7 @@
 
 .docs-toggles > .ant-radio-group .ant-radio-button-wrapper {
   padding: 0 14px;
-  height: 40px;
+  min-height: 40px;
   line-height: 38px;
 }
 

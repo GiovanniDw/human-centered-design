@@ -1,25 +1,25 @@
 <script setup>
-import { onMounted, onUnmounted, ref, computed } from "vue";
+import { onMounted, onUnmounted, ref, computed } from 'vue'
 
 // import ChatView from '@/components/ChatView.vue'
-import ModalBase from "@/components/ModalBase.vue";
-import BaseIcon from "./components/icons/BaseIcon.vue";
-import { RouterLink, RouterView } from "vue-router";
-import { set, useElementBounding } from "@vueuse/core";
-import ImageEditor from "@/components/ImageEditor.vue";
-import ImgIcon from "./components/icons/ImgIcon.vue";
-import avatar from "@/assets/avatar.png";
-const headerRef = ref(null);
+import ModalBase from '@/components/ModalBase.vue'
+import BaseIcon from './components/icons/BaseIcon.vue'
+import { RouterLink, RouterView } from 'vue-router'
+import { set, useElementBounding } from '@vueuse/core'
+import ImageEditor from '@/components/ImageEditor.vue'
+import ImgIcon from './components/icons/ImgIcon.vue'
+import avatar from '@/assets/avatar.png'
+const headerRef = ref(null)
 
-const { height } = useElementBounding(headerRef);
+const { height } = useElementBounding(headerRef)
 
 const headerHeight = computed(() => {
-  const { height } = useElementBounding(headerRef);
-  return height.value + "px";
-});
+  const { height } = useElementBounding(headerRef)
+  return height.value + 'px'
+})
 
-import { useGlobalStore } from "@/stores/global.js";
-const store = useGlobalStore();
+import { useGlobalStore } from '@/stores/global.js'
+const store = useGlobalStore()
 </script>
 
 <template>
@@ -40,7 +40,8 @@ const store = useGlobalStore();
       </ModalBase>
     </Teleport>
     <nav>
-      <RouterLink to="/image-editor">Image Editor</RouterLink>
+      <RouterLink to="/final-image-editor">Final Cropper</RouterLink>
+      <RouterLink to="/image-editor">Cropper V1</RouterLink>
       <RouterLink to="/second-chat">Final Chat</RouterLink>
       <RouterLink to="/first-chat">First Chat</RouterLink>
     </nav>
